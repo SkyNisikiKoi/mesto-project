@@ -1,0 +1,15 @@
+.profile__block {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 18px;
+  padding-bottom: 16px;
+}
+
+@media screen and (max-width: 760px) {
+  .profile__block {
+    padding-bottom: 14px;
+    gap: 10px;
+  
+  }
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="html" lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./pages/pages.css" />
+    <title>Mesto Russia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="хранение фотографий социальная сеть" />
+    <meta name="keywords" content="путешествие, хранение фотографий" />
+    <meta name="author" content="Сидорюк Екатерина" />
+    <script src="./external.js"></script>
+  </head>
+
+  <body class="page">
+    <div class="shadow"></div>
+    <header class="header page__header">
+      <img
+        class="header__logo"
+        src="./images/logo-1.svg"
+        alt="логотип Mesto Russia"
+      />
+    </header>
+
+    <main class="content">
+      <section class="profile page__profile">
+        <div class="profile__avatar">
+          <img
+            class="profile__image"
+            src="./images/Avatar.png"
+            alt="место для аватара"
+          />
+        </div>
+        <div class="profile__text">
+          <div class="profile__block">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__button" onclick="showForm()">
+              <img
+                class="profile__button_redaction"
+                src="./images/EditButton.svg"
+                alt="кнопка редактирования"
+              />
+            </button>
+          </div>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+
+        <!-- form -->
+
+        <div class="form__container" id="edit-form">
+          <button
+            type="button"
+            class="profile__button form__buttons-edit"
+            onclick="hideForm()"
+          >
+            <img
+              class="form__button-edit-image"
+              src="./images/CloseIcon.png"
+              alt="закрыть форму"
+            />
+          </button>
+
+          <form class="form">
+            <h2 class="form__text">Редактировать профиль</h2>
+
+            <fieldset class="form__contact-info">
+              <input
+                class="form__item form__contact-name"
+                type="text"
+                name="name"
+                value="Жак-Ив Кусто"
+                placeholder="Жак-Ив Кусто"
+              />
+              <input
+                class="form__item form__contact-description"
+                type="text"
+                name="description"
+                value="Исследователь океана"
+                placeholder="Исследователь океана"
+              />
+            </fieldset>
+          </form>
+
+          <button type="button" class="form__button-save">Сохранить</button>
+        </div>
+
+        <!-- form -->
+
+        <button
+          type="button"
+          class="profile__button profile_button_plus button__position"
+        >
+          <img src="./images/Vector.png" alt="кнопка добавления фото" />
+        </button>
+      </section>
+
+      <section class="elements page__elements">
+        <div class="element__card">
+          <img
+            class="element__card-image"
+            src="./images/kirill-pershin-1088404-unsplash.png"
+            alt="Карачаевск"
+          />
+          <div class="element__text-block">
+            <h2 class="element__text">Карачаевск</h2>
+
+            <label class="elements__button-check">
+              <input
+                type="checkbox"
+                class="elements__button-inactive"
+                name="rectangle"
+                value="rectangle"
+              />
+              <span class="elements__button-active"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="element__card">
+          <img
+            class="element__card-image"
+            src="./images/kirill-pershin-1404681-unsplash.png"
+            alt="Гора Эльбрус"
+          />
+          <div class="element__text-block">
+            <h2 class="element__text">Гора Эльбрус</h2>
+
+            <label class="elements__button-check">
+              <input
+                type="checkbox"
+                class="elements__button-inactive"
+                name="rectangle"
+                value="rectangle"
+              />
+              <span class="elements__button-active"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="element__card">
+          <img
+            class="element__card-image"
+            src="./images/kirill-pershin-1556355-unsplash.png"
+            alt="Домбай"
+          />
+          <div class="element__text-block">
+            <h2 class="element__text">Домбай</h2>
+
+            <label class="elements__button-check">
+              <input
+                type="checkbox"
+                class="elements__button-inactive"
+                name="rectangle"
+                value="rectangle"
+              />
+              <span class="elements__button-active"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="element__card">
+          <img
+            class="element__card-image"
+            src="./images/kirill-pershin-1404681-unsplash.png"
+            alt="Гора Эльбрус"
+          />
+          <div class="element__text-block">
+            <h2 class="element__text">Гора Эльбрус</h2>
+
+            <label class="elements__button-check">
+              <input
+                type="checkbox"
+                class="elements__button-inactive"
+                name="rectangle"
+                value="rectangle"
+              />
+              <span class="elements__button-active"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="element__card">
+          <img
+            class="element__card-image"
+            src="./images/kirill-pershin-1556355-unsplash.png"
+            alt="Домбай"
+          />
+          <div class="element__text-block">
+            <h2 class="element__text">Домбай</h2>
+
+            <label class="elements__button-check">
+              <input
+                type="checkbox"
+                class="elements__button-inactive"
+                name="rectangle"
+                value="rectangle"
+              />
+              <span class="elements__button-active"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="element__card">
+          <img
+            class="element__card-image"
+            src="./images/kirill-pershin-1088404-unsplash.png"
+            alt="Карачаево-Ч..."
+          />
+          <div class="element__text-block">
+            <h2 class="element__text">Карачаево-Ч...</h2>
+
+            <label class="elements__button-check">
+              <input
+                type="checkbox"
+                class="elements__button-inactive"
+                name="rectangle"
+                value="rectangle"
+              />
+              <span class="elements__button-active"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer page__footer">
+      <p class="footer__text">© 2020 Mesto Russia</p>
+    </footer>
+  </body>
+</html>

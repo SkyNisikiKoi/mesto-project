@@ -1,0 +1,48 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/Font.css);
+
+@import url(../blocks/page/page.css);
+@import url(../blocks/shadow/shadow.css);
+
+
+@import url(../blocks/page/__header/page__header.css);
+@import url(../blocks/page/__profile/page__profile.css);
+@import url(../blocks/page/__elements/page__elements.css);
+@import url(../blocks/page/__footer/page__footer.css);
+
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__image/profile__image.css);
+@import url(../blocks/profile/__text/profile__text.css);
+@import url(../blocks/profile/__title/profile__title.css);
+@import url(../blocks/profile/__subtitle/profile__subtitle.css);
+@import url(../blocks/profile/__button/profile__button.css);
+@import url(../blocks/profile/_redaction/profile__button_redaction.css);
+@import url(../blocks/profile/_plus/profile_button_plus.css);
+@import url(../blocks/profile/__block/profile__block.css);
+@import url(../blocks/profile/__position/button__position.css);
+
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/__card/element__card.css);
+@import url(../blocks/elements/__card-image/element__card-image.css);
+@import url(../blocks/elements/__text-block/element__text-block.css);
+@import url(../blocks/elements/__button/elements__button.css);
+@import url(../blocks/elements/__text/element__text.css);
+@import url(../blocks/elements/__button-check/elements__button-check.css);
+
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__text/footer__text.css);
+
+
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__container/form__container.css);
+@import url(../blocks/form/__contact-info/form__contact-info.css);
+@import url(../blocks/form/__text/form__text.css);
+@import url(../blocks/form/__item/form__item.css);
+@import url(../blocks/form/__button-save/form__button-save.css);
+@import url(../blocks/form/__buttons-edit/form__buttons-edit.css);
+@import url(../blocks/form/__button-edit-image/form__button-edit-image.css);
+
