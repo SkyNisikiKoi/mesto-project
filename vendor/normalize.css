@@ -13,7 +13,6 @@ html {
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
-
 /* Sections
    ========================================================================== */
 
@@ -321,7 +320,7 @@ textarea {
  * 2. Remove the padding in IE 10.
  */
 
-[type="checkbox"],
+[type="submit"],
 [type="radio"] {
   box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */

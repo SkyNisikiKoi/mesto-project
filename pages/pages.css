@@ -3,7 +3,7 @@
 
 @import url(../blocks/page/page.css);
 @import url(../blocks/shadow/shadow.css);
-
+@import url(../blocks/shadow/_show/shadow_show.css);
 
 @import url(../blocks/page/__header/page__header.css);
 @import url(../blocks/page/__profile/page__profile.css);
@@ -31,11 +31,10 @@
 @import url(../blocks/elements/__text-block/element__text-block.css);
 @import url(../blocks/elements/__button/elements__button.css);
 @import url(../blocks/elements/__text/element__text.css);
-@import url(../blocks/elements/__button-check/elements__button-check.css);
+@import url(../blocks/elements/__button-check/elements__button-active.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
-
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__container/form__container.css);
@@ -45,4 +44,3 @@
 @import url(../blocks/form/__button-save/form__button-save.css);
 @import url(../blocks/form/__buttons-edit/form__buttons-edit.css);
 @import url(../blocks/form/__button-edit-image/form__button-edit-image.css);
-

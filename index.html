@@ -8,7 +8,6 @@
     <meta name="description" content="хранение фотографий социальная сеть" />
     <meta name="keywords" content="путешествие, хранение фотографий" />
     <meta name="author" content="Сидорюк Екатерина" />
-    <script src="./external.js"></script>
   </head>
 
   <body class="page">
@@ -33,7 +32,7 @@
         <div class="profile__text">
           <div class="profile__block">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__button" onclick="showForm()">
+            <button type="button" class="profile__button">
               <img
                 class="profile__button_redaction"
                 src="./images/EditButton.svg"
@@ -46,43 +45,40 @@
 
         <!-- form -->
 
-        <div class="form__container" id="edit-form">
-          <button
-            type="button"
-            class="profile__button form__buttons-edit"
-            onclick="hideForm()"
-          >
-            <img
-              class="form__button-edit-image"
-              src="./images/CloseIcon.png"
-              alt="закрыть форму"
-            />
-          </button>
-
-          <form class="form">
-            <h2 class="form__text">Редактировать профиль</h2>
-
-            <fieldset class="form__contact-info">
-              <input
-                class="form__item form__contact-name"
-                type="text"
-                name="name"
-                value="Жак-Ив Кусто"
-                placeholder="Жак-Ив Кусто"
+        <div class="shadow shadow_show">
+          <div class="form__container">
+            <button type="button" class="profile__button form__buttons-edit">
+              <img
+                class="form__button-edit-image"
+                src="./images/CloseIcon.png"
+                alt="закрыть форму"
               />
-              <input
-                class="form__item form__contact-description"
-                type="text"
-                name="description"
-                value="Исследователь океана"
-                placeholder="Исследователь океана"
-              />
-            </fieldset>
-          </form>
+            </button>
 
-          <button type="button" class="form__button-save">Сохранить</button>
+            <form class="form">
+              <h2 class="form__text">Редактировать профиль</h2>
+
+              <fieldset class="form__contact-info">
+                <input
+                  class="form__item form__contact-name"
+                  type="text"
+                  name="name"
+                  value="Жак-Ив Кусто"
+                  placeholder="Жак-Ив Кусто"
+                />
+                <input
+                  class="form__item form__contact-description"
+                  type="text"
+                  name="description"
+                  value="Исследователь океана"
+                  placeholder="Исследователь океана"
+                />
+              </fieldset>
+            </form>
+
+            <button type="button" class="form__button-save">Сохранить</button>
+          </div>
         </div>
-
         <!-- form -->
 
         <button
@@ -102,16 +98,7 @@
           />
           <div class="element__text-block">
             <h2 class="element__text">Карачаевск</h2>
-
-            <label class="elements__button-check">
-              <input
-                type="checkbox"
-                class="elements__button-inactive"
-                name="rectangle"
-                value="rectangle"
-              />
-              <span class="elements__button-active"></span>
-            </label>
+            <input type="submit" class="elements__button-active" value="" />
           </div>
         </div>
 
@@ -123,16 +110,7 @@
           />
           <div class="element__text-block">
             <h2 class="element__text">Гора Эльбрус</h2>
-
-            <label class="elements__button-check">
-              <input
-                type="checkbox"
-                class="elements__button-inactive"
-                name="rectangle"
-                value="rectangle"
-              />
-              <span class="elements__button-active"></span>
-            </label>
+            <input type="submit" class="elements__button-active" value="" />
           </div>
         </div>
 
@@ -145,15 +123,7 @@
           <div class="element__text-block">
             <h2 class="element__text">Домбай</h2>
 
-            <label class="elements__button-check">
-              <input
-                type="checkbox"
-                class="elements__button-inactive"
-                name="rectangle"
-                value="rectangle"
-              />
-              <span class="elements__button-active"></span>
-            </label>
+            <input type="submit" class="elements__button-active" value="" />
           </div>
         </div>
 
@@ -166,15 +136,7 @@
           <div class="element__text-block">
             <h2 class="element__text">Гора Эльбрус</h2>
 
-            <label class="elements__button-check">
-              <input
-                type="checkbox"
-                class="elements__button-inactive"
-                name="rectangle"
-                value="rectangle"
-              />
-              <span class="elements__button-active"></span>
-            </label>
+            <input type="submit" class="elements__button-active" value="" />
           </div>
         </div>
 
@@ -187,15 +149,7 @@
           <div class="element__text-block">
             <h2 class="element__text">Домбай</h2>
 
-            <label class="elements__button-check">
-              <input
-                type="checkbox"
-                class="elements__button-inactive"
-                name="rectangle"
-                value="rectangle"
-              />
-              <span class="elements__button-active"></span>
-            </label>
+            <input type="submit" class="elements__button-active" value="" />
           </div>
         </div>
 
@@ -208,15 +162,7 @@
           <div class="element__text-block">
             <h2 class="element__text">Карачаево-Ч...</h2>
 
-            <label class="elements__button-check">
-              <input
-                type="checkbox"
-                class="elements__button-inactive"
-                name="rectangle"
-                value="rectangle"
-              />
-              <span class="elements__button-active"></span>
-            </label>
+            <input type="submit" class="elements__button-active" value="" />
           </div>
         </div>
       </section>
