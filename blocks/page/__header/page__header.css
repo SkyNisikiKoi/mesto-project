@@ -2,7 +2,7 @@
   margin: 45px 0 40px;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 890px) {
   .page__header {
     margin: 28px 0 42px;
   }

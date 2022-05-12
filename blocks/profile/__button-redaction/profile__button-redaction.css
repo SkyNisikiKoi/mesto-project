@@ -1,0 +1,14 @@
+.profile__button-redaction {
+  width: 24px;
+  height: 24px;
+  background-image: url(../../../images/EditButton.svg);
+  align-items: baseline;
+  display: flex;
+}
+
+@media screen and (max-width: 890px) {
+  .profile__button-redaction {
+    width: 18px;
+    height: 18px;
+  }
+}

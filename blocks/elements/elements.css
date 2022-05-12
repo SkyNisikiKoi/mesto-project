@@ -1,15 +1,7 @@
 .elements {
   display: grid;
-  grid-template-columns: 282px 282px 282px;
-  grid-template-rows: 361px 361px;
+  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   row-gap: 20px;
   column-gap: 17px;
   justify-content: center;
-}
-
-@media screen and (max-width: 760px) {
-  .elements {
-    grid-template-columns: 282px;
-    grid-template-rows: 361px 361px 361px 361px 361px 361px;
-  }
 }

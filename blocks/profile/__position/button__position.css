@@ -1,9 +1,0 @@
-.button__position {
-  margin-left: auto;
-}
-
-@media screen and (max-width: 760px) {
-  .button__position {
-    margin: 0;
-  }
-}

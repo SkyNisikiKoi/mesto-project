@@ -1,11 +1,11 @@
-.profile_button_plus {
+.profile__button-plus {
   width: 150px;
   height: 50px;
   border: 2px solid #ffffff;
 }
 
-@media screen and (max-width: 760px) {
-  .profile_button_plus {
+@media screen and (max-width: 890px) {
+  .profile__button-plus {
     width: 282px;
     height: 50px;
   }

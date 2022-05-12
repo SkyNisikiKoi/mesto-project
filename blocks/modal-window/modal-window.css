@@ -1,14 +1,13 @@
-.form__container {
+.modal-window {
   width: 430px;
-  height: 330px;
   background: #ffffff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   position: relative;
 }
 
-@media screen and (max-width: 760px) {
-  .form__container {
+@media screen and (max-width: 890px) {
+  .modal-window {
     width: 282px;
     height: 322px;
   }
