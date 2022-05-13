@@ -1,4 +1,10 @@
 .profile__button-redaction {
+  margin-left: auto;
+  padding: 0;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  background-size: cover;
   width: 24px;
   height: 24px;
   background-image: url(../../../images/EditButton.svg);
@@ -6,9 +12,15 @@
   display: flex;
 }
 
+.profile__button-redaction:hover {
+  opacity: 0.6;
+}
+
 @media screen and (max-width: 890px) {
   .profile__button-redaction {
+    margin: 0;
     width: 18px;
     height: 18px;
   }
 }
+

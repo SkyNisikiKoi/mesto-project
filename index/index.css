@@ -19,14 +19,13 @@
 @import url(../blocks/profile/__text/profile__text.css);
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
-@import url(../blocks/profile/__button/profile__button.css);
 @import url(../blocks/profile/__button-redaction/profile__button-redaction.css);
 @import url(../blocks/profile/__button-plus.css/profile__button-plus.css);
 @import url(../blocks/profile/__block/profile__block.css);
 
 @import url(../blocks/elements/elements.css);
 
-@import url(../blocks/card/__button-active/card__button.css);
+@import url(../blocks/card/__button/card__button.css);
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__text-block/card__text-block.css);
 @import url(../blocks/card/__text/card__text.css);
@@ -36,7 +35,7 @@
 @import url(../blocks/footer/__text/footer__text.css);
 
 @import url(../blocks/modal-window/modal-window.css);
-@import url(../blocks/modal-window/__buttons-edit/modal-window__buttons-edit.css);
+@import url(../blocks/modal-window/__buttons-exit/modal-window__buttons-exit.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__contact-info/form__contact-info.css);

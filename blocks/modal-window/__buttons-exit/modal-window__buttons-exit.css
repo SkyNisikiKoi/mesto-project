@@ -1,4 +1,4 @@
-.modal-window__buttons-edit {
+.modal-window__buttons-exit {
   position: absolute;
   top: -40px;
   right: -40px;
@@ -12,12 +12,12 @@
   background-size: cover;
 }
 
-.modal-window__buttons-edit:hover {
+.modal-window__buttons-exit:hover {
   opacity: 0.6;
 }
 
 @media screen and (max-width: 890px) {
-  .modal-window__buttons-edit {
+  .modal-window__buttons-exit {
     top: -36px;
     right: 0;
     width: 20px;
