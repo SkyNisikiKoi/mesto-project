@@ -25,6 +25,7 @@
 
 @import url(../blocks/elements/elements.css);
 
+@import url(../blocks/card/__button-check/card__button-check.css);
 @import url(../blocks/card/__button/card__button.css);
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__text-block/card__text-block.css);
