@@ -10,7 +10,7 @@
     <meta name="author" content="Сидорюк Екатерина" />
   </head>
 
-  <body class="page">
+  <body class="page preload">
     <header class="header page__header">
       <img
         class="header__logo"
@@ -48,105 +48,7 @@
       </section>
 
       <section class="elements page__elements">
-        <div class="card">
-          <img
-            class="card__image"
-            src="./images/kirill-pershin-1088404-unsplash.png"
-            alt="Карачаевск"
-          />
-          <div class="card__text-block">
-            <h2 class="card__text">Карачаевск</h2>
-            <button
-              type="button"
-              class="card__button"
-              aria-label="кнопка нравится"
-            ></button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img
-            class="card__image"
-            src="./images/kirill-pershin-1404681-unsplash.png"
-            alt="Гора Эльбрус"
-          />
-          <div class="card__text-block">
-            <h2 class="card__text">Гора Эльбрус</h2>
-            <button
-              type="button"
-              class="card__button"
-              aria-label="кнопка нравится"
-            ></button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img
-            class="card__image"
-            src="./images/kirill-pershin-1556355-unsplash.png"
-            alt="Домбай"
-          />
-          <div class="card__text-block">
-            <h2 class="card__text">Домбай</h2>
-
-            <button
-              type="button"
-              class="card__button"
-              aria-label="кнопка нравится"
-            ></button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img
-            class="card__image"
-            src="./images/kirill-pershin-1404681-unsplash.png"
-            alt="Гора Эльбрус"
-          />
-          <div class="card__text-block">
-            <h2 class="card__text">Гора Эльбрус</h2>
-
-            <button
-              type="button"
-              class="card__button"
-              aria-label="кнопка нравится"
-            ></button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img
-            class="card__image"
-            src="./images/kirill-pershin-1556355-unsplash.png"
-            alt="Домбай"
-          />
-          <div class="card__text-block">
-            <h2 class="card__text">Домбай</h2>
-
-            <button
-              type="button"
-              class="card__button"
-              aria-label="кнопка нравится"
-            ></button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img
-            class="card__image"
-            src="./images/kirill-pershin-1088404-unsplash.png"
-            alt="Карачаево-Ч..."
-          />
-          <div class="card__text-block">
-            <h2 class="card__text">Карачаево-Черкесия</h2>
-
-            <button
-              type="button"
-              class="card__button"
-              aria-label="кнопка нравится"
-            ></button>
-          </div>
-        </div>
+  
       </section>
     </main>
 
@@ -156,7 +58,7 @@
 
     <!-- form -->
 
-    <div class="shadow shadow_show">
+    <div class="shadow">
       <div class="modal-window">
         <button
           type="button"
@@ -172,21 +74,21 @@
               class="form__item"
               type="text"
               name="name"
-              value="Ваше имя"
+              value="Жак-Ив Кусто"
               placeholder="Ваше имя"
             />
             <input
               class="form__item"
               type="text"
               name="description"
-              value="Ваша деятельность"
+              value="Исследователь океана"
               placeholder="Ваша деятельность"
             />
           </fieldset>
         </form>
 
         <button
-          type="button"
+          type="submit"
           class="form__button-save"
           aria-label="сохранения изменений"
         >
@@ -195,5 +97,86 @@
       </div>
     </div>
     <!-- form -->
+
+    <!-- form 2-->
+
+    <div class="shadow_plus">
+      <div class="modal-window_plus">
+        <button
+          type="button"
+          aria-label="закрыть форму"
+          class="modal-window__buttons-exit_plus"
+        ></button>
+
+        <form name="plus-card" class="form_plus">
+          <h2 class="form__text">Новое место</h2>
+
+          <fieldset class="form__contact-info">
+            <input
+              class="form__item"
+              type="text"
+              name="name"
+              value=""
+              placeholder="Название"
+            />
+            <input
+              class="form__item"
+              type="text"
+              name="link"
+              value=""
+              placeholder="Ссылка на картинку"
+            />
+          </fieldset>
+        </form>
+
+        <button
+          type="submit"
+          class="form__button-save"
+          aria-label="сохранения изменений"
+        >
+          Создать
+        </button>
+      </div>
+    </div>
+    <!-- form 2-->
+
+    <!-- form 3-->
+
+    <div class="popup__shadow">
+      <div class="popup__modal-window">
+        <button
+          type="button"
+          aria-label="закрыть форму"
+          class="popup__buttons-exit"
+        ></button>
+
+        <form name="userdata" class="popup__form">
+          <img class="popup__image" src="" alt="" />
+          <h2 class="popup__text"></h2>
+        </form>
+      </div>
+    </div>
+    <!-- form 3-->
+
+    <template id="card-template">
+      <div class="card">
+        <button
+          type="button"
+          aria-label="удалить карточку"
+          class="card__basket"
+        ></button>
+
+        <img class="card__image" src="" alt="" />
+        <div class="card__text-block">
+          <h2 class="card__text"></h2>
+          <button
+            type="button"
+            class="card__button"
+            aria-label="кнопка нравится"
+          ></button>
+        </div>
+      </div>
+    </template>
   </body>
 </html>
+<script src="./external.js"></script>

@@ -1,0 +1,13 @@
+.modal-window_plus {
+    width: 430px;
+    background: #ffffff;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  @media screen and (max-width: 890px) {
+    .modal-window_plus {
+      width: 282px;
+    }
+  }
