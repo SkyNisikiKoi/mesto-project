@@ -1,26 +1,17 @@
-.card_button-inactive[type="checkbox"] {
-  position: absolute;
-  width: 1px; /* если у элемента не будет размеров, некоторые браузеры посчитают, что его вообще нет */
-  height: 1px;
-  overflow: hidden; /* без этого свойства тоже сработает, но так наверняка. Мы его ещё изучим, оно скрывает элементы, выходящие за границы родителя */
-  clip: rect(0 0 0 0);
-}
-
-.card__button-active {
+.card__button {
   background-image: url("../../../images/Group.svg");
   border: none;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
-  width: 22px;
+  min-width: 22px;
   height: 19px;
   display: inline-block;
 }
 
-.card__button-active:hover {
+.card__button:hover {
   opacity: 0.5;
 }
 
-.card_button-inactive:checked + .card__button-active {
+.card__button_active {
   background-image: url(../../../images/Union.svg);
 }
-

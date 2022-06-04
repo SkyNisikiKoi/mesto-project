@@ -1,11 +1,11 @@
-.shadow {
+.popup__shadow {
   position: fixed;
   content: "";
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.9);
   justify-content: center;
   align-items: center;
   opacity: 0;
