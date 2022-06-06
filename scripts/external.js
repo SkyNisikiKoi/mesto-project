@@ -1,46 +1,60 @@
 //Попап редактирование имени
 
-const body = document.querySelector(".preload");
+const preload = document.querySelector(".preload");
+preload.classList.remove('preload');
 
-body.classList.remove('preload');
 
+const profileButtonRedaction = document.querySelector(".profile__button-redaction");
+const modalWindowButtonsExit = document.querySelector('.modal-window__buttons-exit');
 
-const btn = document.querySelector(".profile__button-redaction");
-const unShadow = document.querySelector('.modal-window__buttons-exit');
+const profileTitle = document.querySelector('.profile__title');
+const profileSubtitle = document.querySelector('.profile__subtitle');
 
-btn.addEventListener('click', function () {
-  open('.shadow');
+const editProfileForm = document.querySelector('.form');
+
+const textName = editProfileForm.querySelector("#textName");
+const textDescription = editProfileForm.querySelector("#textDescription");
+
+const popupShadow = document.querySelector(".popup__shadow");
+const popupText = document.querySelector(".popup__text");
+
+const profilePopup = document.querySelector(".shadow");
+
+profileButtonRedaction.addEventListener('click', function () {
+  openPopup('.shadow');
+  textName.value = profileTitle.textContent;
+  textDescription.value = profileSubtitle.textContent;
 }
 );
 
-unShadow.addEventListener('click', function () {
-  close('.shadow');
+modalWindowButtonsExit.addEventListener('click', function () {
+  closePopup('.shadow');
 }
 );
 
-function open(divName) {
-  let shadow = document.querySelector(divName);
-  shadow.classList.add("shadow_show")
+function openPopup(divName) {
+  const shadowPopup = document.querySelector(divName);
+  shadowPopup.classList.add("shadow_show")
 };
 
-function close(divName) {
-  let shadow = document.querySelector(divName);
-  shadow.classList.remove("shadow_show")
+function closePopup(divName) {
+  const shadowPopup = document.querySelector(divName);
+  shadowPopup.classList.remove("shadow_show")
 };
 
-//Попап добавление фото
+//Попап добавление
 
-const btnPlus = document.querySelector(".profile__button-plus");
-const unShadowPlus = document.querySelector('.modal-window__buttons-exit_plus');
+const addCardButton = document.querySelector(".profile__button-plus");
+const exitButtonCardPopup = document.querySelector('.modal-window__buttons-exit_plus');
 
-btnPlus.addEventListener('click', function () {
-  open('.shadow_plus');
+addCardButton.addEventListener('click', function () {
+  openPopup('.shadow_plus');
 
 }
 );
 
-unShadowPlus.addEventListener('click', function () {
-  close('.shadow_plus');
+exitButtonCardPopup.addEventListener('click', function () {
+  closePopup('.shadow_plus');
 }
 );
 
@@ -78,22 +92,18 @@ const cardsTemplate = document.querySelector("#card-template").content.querySele
 
 
 const modalPic = document.querySelector(".popup__image");
-const modalImageEx = document.querySelector(".popup__buttons-exit");
+const exitButtonModalPic = document.querySelector(".popup__buttons-exit");
 
 
 const handleClickImage = function (src, alt) {
   modalPic.src = src;
-  let shadow = document.querySelector(".popup__shadow");
-  let modalText = document.querySelector(".popup__text");
-  shadow.classList.add("popup__shadow-show");
-  modalText.textContent = alt;
+  popupShadow.classList.add("popup__shadow-show");
+  popupText.textContent = alt;
 };
 
 
-modalImageEx.addEventListener('click', function () {
-
-  let shadow = document.querySelector(".popup__shadow")
-  shadow.classList.remove("popup__shadow-show")
+exitButtonModalPic.addEventListener('click', function () {
+  popupShadow.classList.remove("popup__shadow-show")
 }
 );
 
@@ -107,30 +117,25 @@ const createCard = function (data) {
   cardImage.setAttribute('alt', data.text)
 
   cardImage.addEventListener('click', () => handleClickImage(data.img, data.text));
-  // cardImage.addEventListener('click', function (data) {
 
-  //   handleClickImage(data.target.src, data.target.alt);
-  // });
+  const buttonLike = cardElement.querySelector(".card__button");
 
-  const btnlike = cardElement.querySelector(".card__button");
-
-  btnlike.addEventListener('click', function () {
-    btnlike.classList.toggle("card__button_active");
+  buttonLike.addEventListener('click', function () {
+    buttonLike.classList.toggle("card__button_active");
 
   });
 
 
-  const btnDelete = cardElement.querySelector(".card__basket");
-  btnDelete.addEventListener('click', function () {
+  const buttonDelete = cardElement.querySelector(".card__basket");
+  buttonDelete.addEventListener('click', function () {
     cardElement.remove();
   });
-
   return cardElement;
 }
 
 const renderCard = function (data, container) {
-  const newcard = createCard(data);
-  container.prepend(newcard);
+  const newCard = createCard(data);
+  container.prepend(newCard);
 };
 
 cardsOld.forEach(function (item) {
@@ -139,13 +144,13 @@ cardsOld.forEach(function (item) {
 
 
 //добавление карточки
-const modalPlus = document.querySelector(".modal-window_plus");
-const formPlus = modalPlus.querySelector(".form_plus");
+const addCardPopup = document.querySelector(".modal-window_plus");
+const addCardForm = addCardPopup.querySelector(".form_plus");
 
-formPlus.addEventListener('submit', function (e) {
+addCardForm.addEventListener('submit', function (e) {
   e.preventDefault();
-  const textTitle = modalPlus.querySelector("#textTitle");
-  const textLink = modalPlus.querySelector("#textLink");
+  const textTitle = addCardPopup.querySelector("#textTitle");
+  const textLink = addCardPopup.querySelector("#textLink");
 
   const data = {
     text: textTitle.value,
@@ -154,31 +159,21 @@ formPlus.addEventListener('submit', function (e) {
 
   renderCard(data, cardList);
 
-  let shadowPlus = document.querySelector(".shadow_plus");
-  shadowPlus.classList.remove("shadow_show");
+  const addCardShadowPopup = document.querySelector(".shadow_plus");
+  addCardShadowPopup.classList.remove("shadow_show");
+
 
 
 });
 
-//редактирование формы
+//редактирование профиля
 
-const profileTitle = document.querySelector('.profile__title');
-const profileSubtitle = document.querySelector('.profile__subtitle');
-
-const editForm = document.querySelector('.form');
-
-const textName = editForm.querySelector("#textName");
-const textDescription = editForm.querySelector("#textDescription");
-
-editForm.addEventListener('submit', (e) => {
+editProfileForm.addEventListener('submit', (e) => {
   e.preventDefault();
   profileTitle.textContent = textName.value;
   profileSubtitle.textContent = textDescription.value;
 
-
-  let shadow = document.querySelector(".shadow");
-  shadow.classList.remove("shadow_show")
-
+  profilePopup.classList.remove("shadow_show")
 });
 
 

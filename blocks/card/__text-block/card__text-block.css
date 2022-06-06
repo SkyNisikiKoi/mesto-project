@@ -1,5 +1,5 @@
 .card__text-block {
-  margin: 0;
+  margin: auto 0 0 0;
   padding: 25px 0 31px;
   width: 246px;
   display: flex;
