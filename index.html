@@ -47,9 +47,7 @@
         ></button>
       </section>
 
-      <section class="elements page__elements">
-  
-      </section>
+      <section class="elements page__elements"></section>
     </main>
 
     <footer class="footer page__footer">
@@ -74,6 +72,7 @@
               class="form__item"
               type="text"
               name="name"
+              id="textName"
               value="Жак-Ив Кусто"
               placeholder="Ваше имя"
             />
@@ -81,19 +80,20 @@
               class="form__item"
               type="text"
               name="description"
+              id="textDescription"
               value="Исследователь океана"
               placeholder="Ваша деятельность"
             />
           </fieldset>
-        </form>
 
-        <button
-          type="submit"
-          class="form__button-save"
-          aria-label="сохранения изменений"
-        >
-          Сохранить
-        </button>
+          <button
+            type="submit"
+            class="form__button-save"
+            aria-label="сохранения изменений"
+          >
+            Сохранить
+          </button>
+        </form>
       </div>
     </div>
     <!-- form -->
@@ -116,6 +116,7 @@
               class="form__item"
               type="text"
               name="name"
+              id="textTitle"
               value=""
               placeholder="Название"
             />
@@ -123,19 +124,19 @@
               class="form__item"
               type="text"
               name="link"
+              id="textLink"
               value=""
               placeholder="Ссылка на картинку"
             />
           </fieldset>
+          <button
+            type="submit"
+            class="form__button-save"
+            aria-label="сохранения изменений"
+          >
+            Создать
+          </button>
         </form>
-
-        <button
-          type="submit"
-          class="form__button-save"
-          aria-label="сохранения изменений"
-        >
-          Создать
-        </button>
       </div>
     </div>
     <!-- form 2-->
@@ -179,4 +180,4 @@
     </template>
   </body>
 </html>
-<script src="./external.js"></script>
+<script src="./scripts/external.js"></script>
