@@ -1,6 +1,12 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/Font.css);
 
+@import url(../blocks/popup/__buttons-exit/popup__buttons-exit.css);
+@import url(../blocks/popup/__modal-window/popup__modal-window.css);
+@import url(../blocks/popup/__shadow/popup__shadow.css);
+@import url(../blocks/popup/__text/popup__text.css);
+@import url(../blocks/popup/__image/popup__image.css);
+
 @import url(../blocks/page/page.css);
 @import url(../blocks/shadow/shadow.css);
 @import url(../blocks/shadow/_plus/shadow_plus.css);
@@ -55,9 +61,3 @@
 
 
 
-@import url(../blocks/popup/__buttons-exit/popup__buttons-exit.css);
-@import url(../blocks/popup/__modal-window/popup__modal-window.css);
-@import url(../blocks/popup/__shadow/popup__shadow.css);
-@import url(../blocks/popup/__text/popup__text.css);
-@import url(../blocks/popup/__shadow-show/popup__shadow_show.css);
-@import url(../blocks/popup/__image/popup__image.css);

@@ -5,7 +5,7 @@ preload.classList.remove('preload');
 
 
 const profileButtonRedaction = document.querySelector(".profile__button-redaction");
-const modalWindowButtonsExit = document.querySelector('.modal-window__buttons-exit');
+const modalWindowButtonExit = document.querySelector('.modal-window__buttons-exit');
 
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -15,31 +15,33 @@ const editProfileForm = document.querySelector('.form');
 const textName = editProfileForm.querySelector("#textName");
 const textDescription = editProfileForm.querySelector("#textDescription");
 
-const popupShadow = document.querySelector(".popup__shadow");
 const popupText = document.querySelector(".popup__text");
 
 const profilePopup = document.querySelector(".shadow");
+const imagePopup = document.querySelector(".popup__shadow");
+const addCardPopup = document.querySelector(".shadow_plus");
+
+const textTitle = addCardPopup.querySelector("#textTitle");
+const textLink = addCardPopup.querySelector("#textLink");
 
 profileButtonRedaction.addEventListener('click', function () {
-  openPopup('.shadow');
+  openPopup(profilePopup);
   textName.value = profileTitle.textContent;
   textDescription.value = profileSubtitle.textContent;
 }
 );
 
-modalWindowButtonsExit.addEventListener('click', function () {
-  closePopup('.shadow');
+modalWindowButtonExit.addEventListener('click', function () {
+  closePopup(profilePopup);
 }
 );
 
-function openPopup(divName) {
-  const shadowPopup = document.querySelector(divName);
-  shadowPopup.classList.add("shadow_show")
+function openPopup(popup) {
+  popup.classList.add("shadow_show")
 };
 
-function closePopup(divName) {
-  const shadowPopup = document.querySelector(divName);
-  shadowPopup.classList.remove("shadow_show")
+function closePopup(popup) {
+  popup.classList.remove("shadow_show")
 };
 
 //Попап добавление
@@ -48,13 +50,14 @@ const addCardButton = document.querySelector(".profile__button-plus");
 const exitButtonCardPopup = document.querySelector('.modal-window__buttons-exit_plus');
 
 addCardButton.addEventListener('click', function () {
-  openPopup('.shadow_plus');
-
+  openPopup(addCardPopup);
+  textTitle.value = '';
+  textLink.value = '';
 }
 );
 
 exitButtonCardPopup.addEventListener('click', function () {
-  closePopup('.shadow_plus');
+  closePopup(addCardPopup);
 }
 );
 
@@ -94,16 +97,17 @@ const cardsTemplate = document.querySelector("#card-template").content.querySele
 const modalPic = document.querySelector(".popup__image");
 const exitButtonModalPic = document.querySelector(".popup__buttons-exit");
 
-
+// попап изображения
 const handleClickImage = function (src, alt) {
   modalPic.src = src;
-  popupShadow.classList.add("popup__shadow-show");
+  modalPic.alt = alt;
+  openPopup(imagePopup);;
   popupText.textContent = alt;
 };
 
 
 exitButtonModalPic.addEventListener('click', function () {
-  popupShadow.classList.remove("popup__shadow-show")
+  closePopup(imagePopup);
 }
 );
 
@@ -144,13 +148,10 @@ cardsOld.forEach(function (item) {
 
 
 //добавление карточки
-const addCardPopup = document.querySelector(".modal-window_plus");
 const addCardForm = addCardPopup.querySelector(".form_plus");
 
 addCardForm.addEventListener('submit', function (e) {
   e.preventDefault();
-  const textTitle = addCardPopup.querySelector("#textTitle");
-  const textLink = addCardPopup.querySelector("#textLink");
 
   const data = {
     text: textTitle.value,
@@ -159,9 +160,7 @@ addCardForm.addEventListener('submit', function (e) {
 
   renderCard(data, cardList);
 
-  const addCardShadowPopup = document.querySelector(".shadow_plus");
-  addCardShadowPopup.classList.remove("shadow_show");
-
+  closePopup(addCardPopup);
 
 
 });
@@ -173,7 +172,7 @@ editProfileForm.addEventListener('submit', (e) => {
   profileTitle.textContent = textName.value;
   profileSubtitle.textContent = textDescription.value;
 
-  profilePopup.classList.remove("shadow_show")
+  closePopup(profilePopup);
 });
 
 
