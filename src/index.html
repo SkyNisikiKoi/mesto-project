@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="html" lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mesto Russia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="хранение фотографий социальная сеть" />
+    <meta name="keywords" content="путешествие, хранение фотографий" />
+    <meta name="author" content="Сидорюк Екатерина" />
+  </head>
+
+  <body class="page preload">
+    <header class="header page__header">
+      <img
+        class="header__logo"
+        src="../images/logo-1.svg"
+        alt="логотип Mesto Russia"
+      />
+    </header>
+
+    <main class="content">
+      <section class="profile page__profile">
+        <div class="profile__avatar">
+          <img
+            class="profile__image"
+            src="../images/Avatar.png"
+            alt="место для аватара"
+          />
+          <button
+              type="button"
+              aria-label="кнопка для замены картинки аватара"
+              class="profile__button-redaction-image"
+            ></button>
+        </div>
+        <div class="profile__text">
+          <div class="profile__block">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button
+              type="button"
+              aria-label="кнопка для редактирования профиля"
+              class="profile__button-redaction"
+            ></button>
+          </div>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+
+        <button
+          type="button"
+          aria-label="кнопка добавления фото"
+          class="profile__button-plus"
+        ></button>
+      </section>
+
+      <section class="elements page__elements"></section>
+    </main>
+
+    <footer class="footer page__footer">
+      <p class="footer__text">© 2020 Mesto Russia</p>
+    </footer>
+
+    <!-- form -->
+
+    <div class="shadow">
+      <div class="modal-window">
+        <button
+          type="button"
+          aria-label="закрыть форму"
+          class="modal-window__buttons-exit"
+        ></button>
+
+        <form name="userdata" class="form">
+          <h2 class="form__text">Редактировать профиль</h2>
+
+          <fieldset class="form__contact-info">
+            <input
+              class="form__item"
+              type="text"
+              name="name"
+              id="textName"
+              value="Жак-Ив Кусто"
+              placeholder="Ваше имя"
+            />
+            <input
+              class="form__item"
+              type="text"
+              name="description"
+              id="textDescription"
+              value="Исследователь океана"
+              placeholder="Ваша деятельность"
+            />
+          </fieldset>
+
+          <button
+            type="submit"
+            class="form__button-save"
+            aria-label="сохранения изменений"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- form -->
+
+    <!-- form 2-->
+
+    <div class="shadow_plus">
+      <div class="modal-window_plus">
+        <button
+          type="button"
+          aria-label="закрыть форму"
+          class="modal-window__buttons-exit_plus"
+        ></button>
+
+        <form name="plus-card" class="form_plus">
+          <h2 class="form__text">Новое место</h2>
+
+          <fieldset class="form__contact-info">
+            <input
+              required
+              class="form__item"
+              type="text"
+              name="name"
+              id="textTitle"
+              value=""
+              placeholder="Название"
+            />
+            <input
+              required
+              class="form__item"
+              type="text"
+              name="link"
+              id="textLink"
+              value=""
+              placeholder="Ссылка на картинку"
+            />
+          </fieldset>
+          <button
+            type="submit"
+            class="form__button-save"
+            aria-label="сохранения изменений"
+          >
+            Создать
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- form 2-->
+
+    <!-- form 3-->
+
+    <div class="popup__shadow">
+      <div class="popup__modal-window">
+        <button
+          type="button"
+          aria-label="закрыть форму"
+          class="popup__buttons-exit"
+        ></button>
+
+        <form name="userdata" class="popup__form">
+          <img class="popup__image" src="" alt="" />
+          <h2 class="popup__text"></h2>
+        </form>
+      </div>
+    </div>
+    <!-- form 3-->
+
+    <!-- form 4-->
+
+    <div class="shadow_update-avatar">
+      <div class="modal-window_update-avatar">
+        <button
+          type="button"
+          aria-label="закрыть форму"
+          class="modal-window__buttons-exit_update-avatar"
+        ></button>
+
+        <form name="update-avatar" class="form_update-avatar">
+          <h2 class="form__text">Обновить аватар</h2>
+
+          <fieldset class="form__contact-info">
+            <input
+              required
+              class="form__item"
+              type="text"
+              name="link-image"
+              id="linkImage"
+              value=""
+              placeholder="Ссылка"
+            />
+          </fieldset>
+          <button
+            type="submit"
+            class="form__button-save"
+            aria-label="сохранения изменений"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- form 4-->
+
+       <!-- form 5-->
+
+       <div class="shadow_deletion-confirmation">
+        <div class="modal-window_deletion-confirmation">
+          <button
+            type="button"
+            aria-label="закрыть форму"
+            class="modal-window__buttons-exit_deletion-confirmation"
+          ></button>
+  
+          <form name="deletion-confirmation" class="form_deletion-confirmation">
+            <h2 class="form__text">Вы уверены?</h2>
+            <button
+              type="submit"
+              class="form__button-save_deletion-confirmation"
+              aria-label="подтверждение удаления"
+            >
+             Да
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- form 5-->
+
+    <template id="card-template">
+      <div class="card">
+        <button
+          type="button"
+          aria-label="удалить карточку"
+          class="card__basket"
+        ></button>
+
+        <img class="card__image" src="" alt="" />
+        <div class="card__text-block">
+          <h2 class="card__text"></h2>
+          <button
+            type="button"
+            class="card__button"
+            aria-label="кнопка нравится"
+          ></button>
+        </div>
+      </div>
+    </template>
+  </body>
+</html>

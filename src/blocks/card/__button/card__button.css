@@ -1,0 +1,17 @@
+.card__button {
+  background-image: url("../../../../images/Group.svg");
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+  min-width: 22px;
+  height: 19px;
+  display: inline-block;
+}
+
+.card__button:hover {
+  opacity: 0.5;
+}
+
+.card__button_active {
+  background-image: url(../../../../images/Union.svg);
+}
