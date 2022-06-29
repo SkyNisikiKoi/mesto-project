@@ -26,22 +26,20 @@ module.exports = {
         exclude: '/node_modules/'
       },
       {
-        test: /\.(woff(2)?|eot|ttf|otf)$/,
-        type: 'asset/resource',
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
         type: 'asset/resource',
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [MiniCssExtractPlugin.loader, {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          'postcss-loader'
+        ]
       },
-      // {
-      //   test: /\.html$/,
-      //   exclude: /node_modules/,
-      //   loader: 'html-loader'
-      // },
     ]
   },
   plugins: [
