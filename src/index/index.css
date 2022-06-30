@@ -64,8 +64,10 @@
 @import url(../blocks/form/__item/form__item.css);
 @import url(../blocks/form/__button-save/form__button-save.css);
 @import url(../blocks/form/_deletion-confirmation/form__button-save_deletion-confirmation.css);
-
-
+@import url(../blocks/form/_type_error/form__item_type_error.css);
+@import url(../blocks/form/__input-error/form__input-error.css);
+@import url(../blocks/form/_active/form__input-error_active.css);
+@import url(../blocks/form/_inactive/form__button-save_inactive.css);
 
 
 

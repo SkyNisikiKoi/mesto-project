@@ -68,7 +68,7 @@
           class="modal-window__buttons-exit"
         ></button>
 
-        <form name="userdata" class="form">
+        <form name="userdata" class="form" novalidate>
           <h2 class="form__text">Редактировать профиль</h2>
 
           <fieldset class="form__contact-info">
@@ -79,7 +79,11 @@
               id="textName"
               value="Жак-Ив Кусто"
               placeholder="Ваше имя"
+              minlength="2" 
+              maxlength="40"
+              required
             />
+            <span class="form__input-error" id="textName-error"></span>
             <input
               class="form__item"
               type="text"
@@ -87,7 +91,11 @@
               id="textDescription"
               value="Исследователь океана"
               placeholder="Ваша деятельность"
+              minlength="2" 
+              maxlength="200"
+              required
             />
+            <span class="form__input-error" id="textDescription-error"></span>
           </fieldset>
 
           <button
@@ -112,7 +120,7 @@
           class="modal-window__buttons-exit_plus"
         ></button>
 
-        <form name="plus-card" class="form_plus">
+        <form name="plus-card" class="form form_plus" novalidate>
           <h2 class="form__text">Новое место</h2>
 
           <fieldset class="form__contact-info">
@@ -124,16 +132,22 @@
               id="textTitle"
               value=""
               placeholder="Название"
+              minlength="2" 
+              maxlength="30"
+              required
             />
+            <span class="form__input-error" id="textTitle-error"></span>
             <input
               required
               class="form__item"
-              type="text"
+              type="url"
               name="link"
               id="textLink"
               value=""
               placeholder="Ссылка на картинку"
+              required
             />
+            <span class="form__input-error" id="textLink-error"></span>
           </fieldset>
           <button
             type="submit"
@@ -175,19 +189,21 @@
           class="modal-window__buttons-exit_update-avatar"
         ></button>
 
-        <form name="update-avatar" class="form_update-avatar">
+        <form name="update-avatar" class="form form_update-avatar" novalidate>
           <h2 class="form__text">Обновить аватар</h2>
 
           <fieldset class="form__contact-info">
             <input
               required
               class="form__item"
-              type="text"
+              type="url"
               name="link-image"
               id="linkImage"
               value=""
               placeholder="Ссылка"
+              required
             />
+            <span class="form__input-error" id="linkImage-error"></span>
           </fieldset>
           <button
             type="submit"
