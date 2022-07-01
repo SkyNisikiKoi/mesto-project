@@ -3,6 +3,7 @@ import './components/card.js';
 import './components/modal.js';
 import './components/utils.js';
 import './components/validate.js';
+import './components/api';
 
 
 const preload = document.querySelector(".preload");
