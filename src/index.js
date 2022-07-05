@@ -35,6 +35,8 @@ import { textName } from './components/modal.js';
 import { textTitle } from './components/modal.js';
 import { textLink } from './components/modal.js';
 
+import { saveEditProfile } from './components/api.js';
+
 import { exitButtonModalPic } from './components/card';
 
 document.addEventListener('keydown', function (e) {
@@ -42,18 +44,20 @@ document.addEventListener('keydown', function (e) {
 });
 
 document.addEventListener('click', function (e) {
-    e.preventDefault();
-
     if (e.target.classList.contains('shadow_show')) {
         popupCloseOverlay(e);
     };
 });
 
-editProfileForm.addEventListener('submit', (e) => {
+editProfileForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    profileTitle.textContent = textName.value;
-    profileSubtitle.textContent = textDescription.value;
 
+    const newDataProfileSaved = await saveEditProfile(textName.value, textDescription.value);
+
+    if(newDataProfileSaved){
+        profileTitle.textContent = textName.value;
+        profileSubtitle.textContent = textDescription.value;
+    }
     closePopup(profilePopup);
 });
 

@@ -45,6 +45,8 @@
 @import url(../blocks/card/__text/card__text.css);
 @import url(../blocks/card/card.css);
 @import url(../blocks/card/__basket/card__basket.css);
+@import url(../blocks/card/__block-like/card__block-like.css);
+@import url(../blocks/card/__count/card__count.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
