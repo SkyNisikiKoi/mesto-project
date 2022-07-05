@@ -9,6 +9,7 @@
   width: 18px;
   height: 19px;
   background-size: cover;
+  display: none;
 }
 
 .card__basket:hover {

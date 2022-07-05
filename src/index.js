@@ -36,8 +36,14 @@ import { textTitle } from './components/modal.js';
 import { textLink } from './components/modal.js';
 
 import { saveEditProfile } from './components/api.js';
+import { deleteCard } from './components/api.js';
+import { saveEditAvatar } from './components/api.js';
 
-import { exitButtonModalPic } from './components/card';
+import { exitButtonModalPic } from './components/card.js';
+import { formDeletionConfirmation } from './components/card.js';
+import { popupdeletionConfirmation } from './components/card.js';
+
+
 
 document.addEventListener('keydown', function (e) {
     popupCloseEsc(e);
@@ -54,7 +60,7 @@ editProfileForm.addEventListener('submit', async (e) => {
 
     const newDataProfileSaved = await saveEditProfile(textName.value, textDescription.value);
 
-    if(newDataProfileSaved){
+    if (newDataProfileSaved) {
         profileTitle.textContent = textName.value;
         profileSubtitle.textContent = textDescription.value;
     }
@@ -114,3 +120,29 @@ exitButtonCardPopup.addEventListener('click', function () {
     closePopup(addCardPopup);
 }
 );
+
+
+formDeletionConfirmation.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    await deleteCard(e.target.cardId);
+    closePopup(popupdeletionConfirmation);
+    const cardToDelete = document.getElementById(e.target.cardId);
+    cardToDelete.remove();
+});
+
+const formUpdateAvatar = document.querySelector('.form_update-avatar');
+
+formUpdateAvatar.addEventListener('submit', async function () {
+
+    const linkImage = document.getElementById('linkImage');
+
+    let link = linkImage.value;
+
+    const newAvatar = await saveEditAvatar(link);
+
+    if (newAvatar) {
+        imageAvatar.setAttribute('src', newAvatar.avatar);
+    }
+    closePopup(updateAvatar);
+
+});

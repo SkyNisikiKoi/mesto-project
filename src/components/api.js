@@ -36,8 +36,8 @@ export function loadCards() {
         });
 };
 
-export function saveEditProfile(nameProfile,infProfile) {
-   return fetch('https://nomoreparties.co/v1/plus-cohort-13/users/me', {
+export function saveEditProfile(nameProfile, infProfile) {
+    return fetch('https://nomoreparties.co/v1/plus-cohort-13/users/me', {
         method: 'PATCH',
         headers: {
             authorization: '15612dfc-e819-4f89-bf79-39ea6734df41',
@@ -48,7 +48,7 @@ export function saveEditProfile(nameProfile,infProfile) {
             about: infProfile
         })
     })
-    .then(res => res.ok);
+        .then(res => res.ok);
 };
 
 export function saveNewCard(nameCard, linkImageCard) {
@@ -63,5 +63,86 @@ export function saveNewCard(nameCard, linkImageCard) {
             link: linkImageCard
         })
     })
-    .then(res => res.ok);
+        .then(res => {
+            if (res.ok)
+                return res.json();
+            else
+                return false;
+        });
+}
+
+export function deleteCard(cardId) {
+    return fetch(`https://nomoreparties.co/v1/plus-cohort-13/cards/${cardId}`, {
+        method: 'DELETE',
+        headers: {
+            authorization: '15612dfc-e819-4f89-bf79-39ea6734df41',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: cardId
+        })
+    })
+        .then(res => {
+            if (res.ok)
+                return res.json();
+            else
+                return false;
+        });
+};
+
+export function likeCard(cardId) {
+    return fetch(`https://nomoreparties.co/v1/plus-cohort-13/cards/likes/${cardId}`, {
+        method: 'PUT',
+        headers: {
+            authorization: '15612dfc-e819-4f89-bf79-39ea6734df41',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: cardId
+        })
+    })
+        .then(res => {
+            if (res.ok)
+                return res.json();
+            else
+                return false;
+        });
+};
+
+export function deleteLikeCard(cardId) {
+    return fetch(`https://nomoreparties.co/v1/plus-cohort-13/cards/likes/${cardId}`, {
+        method: 'DELETE',
+        headers: {
+            authorization: '15612dfc-e819-4f89-bf79-39ea6734df41',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: cardId
+        })
+    })
+        .then(res => {
+            if (res.ok)
+                return res.json();
+            else
+                return false;
+        });
+};
+
+export function saveEditAvatar(linkAvatar) {
+    return fetch('https://nomoreparties.co/v1/plus-cohort-13/users/me/avatar', {
+        method: 'PATCH',
+        headers: {
+            authorization: '15612dfc-e819-4f89-bf79-39ea6734df41',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            avatar: linkAvatar
+        })
+    })
+    .then(res => {
+        if (res.ok)
+            return res.json();
+        else
+            return false;
+    });
 }

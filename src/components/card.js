@@ -9,13 +9,17 @@ import { addCardPopup } from './modal.js';
 import { openPopup } from './modal.js';
 
 import { saveNewCard } from './api.js';
+import { deleteLikeCard } from './api.js';
+import { likeCard } from './api.js';
+
 
 const cardList = document.querySelector(".elements");
 const cardsTemplate = document.querySelector("#card-template").content.querySelector('.card')
-
+export const formDeletionConfirmation = document.querySelector('.form_deletion-confirmation');
 
 const modalPic = document.querySelector(".popup__image");
 export const exitButtonModalPic = document.querySelector(".popup__buttons-exit");
+export const popupdeletionConfirmation = document.querySelector('.shadow_deletion-confirmation');
 
 // попап изображения
 const handleClickImage = function (src, alt) {
@@ -35,36 +39,53 @@ const createCard = function (data) {
     cardImage.src = data.link;
     cardText.textContent = data.name;
     likeCount.textContent = data.likes.length;
+    cardElement.id = data._id;
+
     cardImage.setAttribute('alt', data.name)
 
     cardImage.addEventListener('click', () => handleClickImage(data.link, data.name));
 
     const buttonLike = cardElement.querySelector(".card__button");
 
-    buttonLike.addEventListener('click', function () {
-        buttonLike.classList.toggle("card__button_active");
+    buttonLike.addEventListener('click', async function () {
 
+        if(buttonLike.classList.contains("card__button_active")){
+            const res = await deleteLikeCard(data._id);
+            if(res)
+            {
+                buttonLike.classList.toggle("card__button_active");
+                likeCount.textContent = res.likes.length;
+            }
+        } else {
+            const res = await likeCard(data._id);
+            if(res){
+                buttonLike.classList.toggle("card__button_active");
+                likeCount.textContent = res.likes.length;
+            }
+        };
+
+      
+       
     });
 
 
     const buttonDelete = cardElement.querySelector(".card__basket");
-    const deletionConfirmation = document.querySelector('.shadow_deletion-confirmation');
     const exitDeletionConfirmation = document.querySelector('.modal-window__buttons-exit_deletion-confirmation');
-    const saveDeletionConfirmation = document.querySelector('.form__button-save_deletion-confirmation');
-
-    buttonDelete.addEventListener('click', function () {
-        deletionConfirmation.classList.add("shadow_show")
+    
+    buttonDelete.addEventListener('click', function (e) {
+        popupdeletionConfirmation.classList.add("shadow_show")
+        formDeletionConfirmation.cardId = e.target.parentElement.id;
     });
 
     exitDeletionConfirmation.addEventListener('click', function () {
-        deletionConfirmation.classList.remove("shadow_show")
+        popupdeletionConfirmation.classList.remove("shadow_show")
     });
 
+    if (data.owner._id == "0016546f4b595052e8542d69"){
+        buttonDelete.classList.add("card__basket_visible")
+    };
 
-    // saveDeletionConfirmation.addEventListener('click', function () {
-    //   cardElement.remove();
-    // });
-    // return cardElement;
+    return cardElement;
 }
 
 const renderCard = function (data, container) {
@@ -96,9 +117,12 @@ addCardForm.addEventListener('submit', async function (e) {
 
 
     const newCardSaved = await saveNewCard(textTitle.value, textLink.value);
-
+    
     if (newCardSaved) {
-        renderCard(data, cardList);
+        renderCard(newCardSaved, cardList);
     }
     closePopup(addCardPopup);
 });
+
+
+
