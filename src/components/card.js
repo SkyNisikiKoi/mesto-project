@@ -47,6 +47,13 @@ const createCard = function (data) {
 
     const buttonLike = cardElement.querySelector(".card__button");
 
+    data.likes.forEach(function(like){
+        if (like._id == '0016546f4b595052e8542d69') {
+            buttonLike.classList.add('card__button_active');
+        };
+    })
+
+   
     buttonLike.addEventListener('click', async function () {
 
         if(buttonLike.classList.contains("card__button_active")){
