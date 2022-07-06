@@ -44,7 +44,6 @@ import { formDeletionConfirmation } from './components/card.js';
 import { popupdeletionConfirmation } from './components/card.js';
 
 
-
 document.addEventListener('keydown', function (e) {
     popupCloseEsc(e);
 });
@@ -58,7 +57,13 @@ document.addEventListener('click', function (e) {
 editProfileForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const buttonSave = editProfileForm.querySelector('.form__button-save');
+
+    buttonSave.textContent = 'Сохранение...';
+
     const newDataProfileSaved = await saveEditProfile(textName.value, textDescription.value);
+
+    buttonSave.textContent = 'Сохранить';
 
     if (newDataProfileSaved) {
         profileTitle.textContent = textName.value;
@@ -124,7 +129,15 @@ exitButtonCardPopup.addEventListener('click', function () {
 
 formDeletionConfirmation.addEventListener('submit', async function (e) {
     e.preventDefault();
+
+    const buttonSave = formDeletionConfirmation.querySelector('.form__button-save_deletion-confirmation');
+
+    buttonSave.textContent = 'Сохранение...';
+
     await deleteCard(e.target.cardId);
+
+    buttonSave.textContent = 'Да';
+
     closePopup(popupdeletionConfirmation);
     const cardToDelete = document.getElementById(e.target.cardId);
     cardToDelete.remove();
@@ -138,7 +151,13 @@ formUpdateAvatar.addEventListener('submit', async function () {
 
     let link = linkImage.value;
 
+    const buttonSave = formUpdateAvatar.querySelector('.form__button-save');
+
+    buttonSave.textContent = 'Сохранение...';
+
     const newAvatar = await saveEditAvatar(link);
+
+    buttonSave.textContent = 'Сохранить';
 
     if (newAvatar) {
         imageAvatar.setAttribute('src', newAvatar.avatar);

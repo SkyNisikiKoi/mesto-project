@@ -114,10 +114,14 @@ addCardForm.addEventListener('submit', async function (e) {
         link: textLink.value
     };
 
+    const buttonSave = addCardForm.querySelector('.form__button-save');
 
+    buttonSave.textContent = 'Сохранение...';
 
     const newCardSaved = await saveNewCard(textTitle.value, textLink.value);
     
+    buttonSave.textContent = 'Создать';
+
     if (newCardSaved) {
         renderCard(newCardSaved, cardList);
     }
