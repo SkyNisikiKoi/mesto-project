@@ -9,10 +9,6 @@ import './components/api';
 const preload = document.querySelector(".preload");
 preload.classList.remove('preload');
 
-//Закрытие попапов esc
-
-import { popupCloseEsc } from './components/utils.js';
-import { popupCloseOverlay } from './components/utils.js';
 
 import { editProfileForm } from './components/modal.js';
 import { profileTitle } from './components/modal.js';
@@ -24,30 +20,14 @@ import { buttonImage } from './components/modal.js';
 import { imagePopup } from './components/modal.js';
 import { openPopup } from './components/modal.js';
 import { updateAvatar } from './components/modal.js';
-import { exitUpdateAvatar } from './components/modal.js';
 import { profileButtonRedaction } from './components/modal.js';
 import { textDescription } from './components/modal.js';
-import { modalWindowButtonExit } from './components/modal.js';
 import { addCardButton } from './components/modal.js';
-import { addCardPopup } from './components/modal.js';
-import { exitButtonCardPopup } from './components/modal.js';
 import { textName } from './components/modal.js';
-import { textTitle } from './components/modal.js';
-import { textLink } from './components/modal.js';
+import { addCardPopup } from './components/modal.js';
 
-import { exitButtonModalPic } from './components/card';
+import { addCardForm } from './components/card.js';
 
-document.addEventListener('keydown', function (e) {
-    popupCloseEsc(e);
-});
-
-document.addEventListener('click', function (e) {
-
-
-    if (e.target.classList.contains('shadow_show')) {
-        popupCloseOverlay(e);
-    };
-});
 
 editProfileForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -57,11 +37,6 @@ editProfileForm.addEventListener('submit', (e) => {
     closePopup(profilePopup);
 });
 
-
-exitButtonModalPic.addEventListener('click', function () {
-    closePopup(imagePopup);
-}
-);
 
 imageAvatar.addEventListener('mouseover', function () {
     buttonImage.style.display = "block";
@@ -78,13 +53,6 @@ buttonImage.addEventListener('click', function () {
 }
 );
 
-exitUpdateAvatar.addEventListener('click', function () {
-    closePopup(updateAvatar);
-}
-);
-
-
-
 profileButtonRedaction.addEventListener('click', function () {
     openPopup(profilePopup);
     textName.value = profileTitle.textContent;
@@ -92,21 +60,11 @@ profileButtonRedaction.addEventListener('click', function () {
 }
 );
 
-modalWindowButtonExit.addEventListener('click', function () {
-    closePopup(profilePopup);
-}
-);
-
 addCardButton.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
     openPopup(addCardPopup);
-    textTitle.value = '';
-    textLink.value = '';
-}
-);
-
-exitButtonCardPopup.addEventListener('click', function () {
-    closePopup(addCardPopup);
+    addCardForm.reset();
+    
 }
 );

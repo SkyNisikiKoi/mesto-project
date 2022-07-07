@@ -48,7 +48,7 @@ export const exitButtonModalPic = document.querySelector(".popup__buttons-exit")
 const handleClickImage = function (src, alt) {
     modalPic.src = src;
     modalPic.alt = alt;
-    openPopup(imagePopup);;
+    openPopup(imagePopup);
     popupText.textContent = alt;
 };
 
@@ -92,7 +92,7 @@ cardsOld.forEach(function (item) {
 
 
 //добавление карточки
-const addCardForm = addCardPopup.querySelector(".form_plus");
+export const addCardForm = addCardPopup.querySelector(".form_plus");
 
 addCardForm.addEventListener('submit', function (e) {
     e.preventDefault();
