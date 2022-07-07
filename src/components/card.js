@@ -1,27 +1,31 @@
+const Karachaevsk = new URL('../../images/kirill-pershin-1088404-unsplash.png', import.meta.url);
+const Elbrus = new URL('../../images/kirill-pershin-1404681-unsplash.png', import.meta.url);
+const Dombay = new URL('../../images/kirill-pershin-1556355-unsplash.png', import.meta.url)
+
 const cardsOld = [
     {
         text: 'Карачаевск',
-        img: "./images/kirill-pershin-1088404-unsplash.png"
+        img: Karachaevsk
     },
     {
         text: "Гора Эльбрус",
-        img: "./images/kirill-pershin-1404681-unsplash.png"
+        img: Elbrus
     },
     {
         text: "Домбай",
-        img: "./images/kirill-pershin-1556355-unsplash.png"
+        img: Dombay
     },
     {
         text: "Гора Эльбрус",
-        img: "./images/kirill-pershin-1404681-unsplash.png"
+        img: Elbrus
     },
     {
         text: "Домбай",
-        img: "./images/kirill-pershin-1556355-unsplash.png"
+        img: Dombay
     },
     {
         text: "Карачаево-Черкесия",
-        img: "./images/kirill-pershin-1088404-unsplash.png"
+        img: Karachaevsk
     }
 ];
 
@@ -69,22 +73,11 @@ const createCard = function (data) {
 
 
     const buttonDelete = cardElement.querySelector(".card__basket");
-    const deletionConfirmation = document.querySelector('.shadow_deletion-confirmation');
-    const exitDeletionConfirmation = document.querySelector('.modal-window__buttons-exit_deletion-confirmation');
-    const saveDeletionConfirmation = document.querySelector('.form__button-save_deletion-confirmation');
 
     buttonDelete.addEventListener('click', function () {
-        deletionConfirmation.classList.add("shadow_show")
+        cardElement.remove();
     });
 
-    exitDeletionConfirmation.addEventListener('click', function () {
-        deletionConfirmation.classList.remove("shadow_show")
-    });
-
-
-    // saveDeletionConfirmation.addEventListener('click', function () {
-    //   cardElement.remove();
-    // });
     return cardElement;
 }
 

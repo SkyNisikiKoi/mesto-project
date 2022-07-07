@@ -42,7 +42,7 @@ document.addEventListener('keydown', function (e) {
 });
 
 document.addEventListener('click', function (e) {
-    e.preventDefault();
+
 
     if (e.target.classList.contains('shadow_show')) {
         popupCloseOverlay(e);
