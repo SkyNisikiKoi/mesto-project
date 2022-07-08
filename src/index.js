@@ -9,6 +9,8 @@ import './components/api';
 const preload = document.querySelector(".preload");
 preload.classList.remove('preload');
 
+export let userId = '';
+
 //Закрытие попапов esc
 
 import { popupCloseEsc } from './components/utils.js';
@@ -32,10 +34,14 @@ import { textName } from './components/modal.js';
 import { saveEditProfile } from './components/api.js';
 import { deleteCard } from './components/api.js';
 import { saveEditAvatar } from './components/api.js';
+import { loadUserData } from './components/api.js';
+import { checkResponse } from './components/api.js';
 
 import { formDeletionConfirmation } from './components/card.js';
 import { popupdeletionConfirmation } from './components/card.js';
 import { addCardForm } from './components/card.js';
+
+
 
 document.addEventListener('keydown', function (e) {
     popupCloseEsc(e);
@@ -43,22 +49,27 @@ document.addEventListener('keydown', function (e) {
 
 
 
-editProfileForm.addEventListener('submit', async (e) => {
+editProfileForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const buttonSave = editProfileForm.querySelector('.form__button-save');
 
     buttonSave.textContent = 'Сохранение...';
 
-    const newDataProfileSaved = await saveEditProfile(textName.value, textDescription.value);
+    saveEditProfile(textName.value, textDescription.value)
+        .then(checkResponse)
+        .then((result) => {
+            profileTitle.textContent = result.name;
+            profileSubtitle.textContent = result.about;
 
-    buttonSave.textContent = 'Сохранить';
-
-    if (newDataProfileSaved) {
-        profileTitle.textContent = textName.value;
-        profileSubtitle.textContent = textDescription.value;
-    }
-    closePopup(profilePopup);
+            closePopup(profilePopup);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            buttonSave.textContent = 'Сохранить';
+        })
 });
 
 
@@ -91,7 +102,7 @@ addCardButton.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
     openPopup(addCardPopup);
-       addCardForm.reset();
+    addCardForm.reset();
     formButtonSave.setAttribute('disabled', 'disabled');
     formButtonSave.classList.add("form__button-save_inactive");
 }
@@ -99,25 +110,31 @@ addCardButton.addEventListener('click', function (e) {
 
 
 
-formDeletionConfirmation.addEventListener('submit', async function (e) {
+formDeletionConfirmation.addEventListener('submit', function (e) {
     e.preventDefault();
 
     const buttonSave = formDeletionConfirmation.querySelector('.form__button-save_deletion-confirmation');
 
     buttonSave.textContent = 'Сохранение...';
 
-    await deleteCard(e.target.cardId);
-
-    buttonSave.textContent = 'Да';
-
-    closePopup(popupdeletionConfirmation);
-    const cardToDelete = document.getElementById(e.target.cardId);
-    cardToDelete.remove();
+     deleteCard(e.target.cardId)
+        .then(checkResponse)
+        .then(() => {
+            closePopup(popupdeletionConfirmation);
+            const cardToDelete = document.getElementById(e.target.cardId);
+            cardToDelete.remove();
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            buttonSave.textContent = 'Да';
+        })
 });
 
 const formUpdateAvatar = document.querySelector('.form_update-avatar');
 
-formUpdateAvatar.addEventListener('submit', async function () {
+formUpdateAvatar.addEventListener('submit', function () {
 
     const linkImage = document.getElementById('linkImage');
 
@@ -127,13 +144,31 @@ formUpdateAvatar.addEventListener('submit', async function () {
 
     buttonSave.textContent = 'Сохранение...';
 
-    const newAvatar = await saveEditAvatar(link);
-
-    buttonSave.textContent = 'Сохранить';
-
-    if (newAvatar) {
-        imageAvatar.setAttribute('src', newAvatar.avatar);
-    }
-    closePopup(updateAvatar);
-
+ saveEditAvatar(link)
+    .then(checkResponse)
+    .then((result) => {
+            imageAvatar.setAttribute('src', result.avatar);
+        closePopup(updateAvatar);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+    .finally(() => {
+        buttonSave.textContent = 'Сохранить'; 
+    })
 });
+
+
+
+loadUserData()
+    .then(checkResponse)
+    .then((dataUser) => {
+        profileTitle.textContent = dataUser.name;
+        profileSubtitle.textContent = dataUser.about;
+        imageAvatar.setAttribute("src", dataUser.avatar);
+        profileSubtitle.textContent = dataUser.about;
+        userId = dataUser._id;
+    })
+    .catch((err) => {
+        console.log(err);
+    });

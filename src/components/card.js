@@ -11,6 +11,11 @@ import { openPopup } from './modal.js';
 import { saveNewCard } from './api.js';
 import { deleteLikeCard } from './api.js';
 import { likeCard } from './api.js';
+import { checkResponse } from './api.js';
+
+import { userId } from '../index.js';
+
+
 
 
 const cardList = document.querySelector(".elements");
@@ -20,7 +25,7 @@ export const formDeletionConfirmation = document.querySelector('.form_deletion-c
 const modalPic = document.querySelector(".popup__image");
 export const popupdeletionConfirmation = document.querySelector('.popup__deletion-confirmation');
 
-const userId = '0016546f4b595052e8542d69';
+
 
 // попап изображения
 const handleClickImage = function (src, alt) {
@@ -57,24 +62,29 @@ const createCard = function (data) {
     })
 
 
-    buttonLike.addEventListener('click', async function () {
+    buttonLike.addEventListener('click', function () {
 
         if (buttonLike.classList.contains("card__button_active")) {
-            const res = await deleteLikeCard(data._id);
-            if (res) {
-                buttonLike.classList.toggle("card__button_active");
-                likeCount.textContent = res.likes.length;
-            }
+            deleteLikeCard(data._id)
+                .then(checkResponse)
+                .then((result) => {
+                    buttonLike.classList.toggle("card__button_active");
+                    likeCount.textContent = result.likes.length;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         } else {
-            const res = await likeCard(data._id);
-            if (res) {
-                buttonLike.classList.toggle("card__button_active");
-                likeCount.textContent = res.likes.length;
-            }
+            likeCard(data._id)
+                .then(checkResponse)
+                .then((result) => {
+                    buttonLike.classList.toggle("card__button_active");
+                    likeCount.textContent = result.likes.length;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         };
-
-
-
     });
 
 
@@ -98,36 +108,45 @@ const renderCard = function (data, container) {
     container.prepend(newCard);
 };
 
-async function renderServerCards() {
-    const loadCardsData = await loadCards();
-
-    loadCardsData.forEach(function (item) {
-        renderCard(item, cardList);
+loadCards()
+    .then(checkResponse)
+    .then((result) => {
+        result.forEach(function (item) {
+            renderCard(item, cardList);
+        });
+    })
+    .catch((err) => {
+        console.log(err);
     });
-};
 
-renderServerCards();
+
+
 
 //добавление карточки
 export const addCardForm = addCardPopup.querySelector(".form_plus");
 
 
 
-addCardForm.addEventListener('submit', async function (e) {
+addCardForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
     const buttonSave = addCardForm.querySelector('.form__button-save');
 
     buttonSave.textContent = 'Сохранение...';
 
-    const newCardSaved = await saveNewCard(textTitle.value, textLink.value);
+    saveNewCard(textTitle.value, textLink.value)
+        .then(checkResponse)
+        .then((result) => {
+            renderCard(result, cardList);
 
-    buttonSave.textContent = 'Создать';
-
-    if (newCardSaved) {
-        renderCard(newCardSaved, cardList);
-    }
-    closePopup(addCardPopup);
+            closePopup(addCardPopup);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            buttonSave.textContent = 'Создать';
+        })
 });
 
 
