@@ -77,16 +77,12 @@ const createCard = function (data) {
 
 
     const buttonDelete = cardElement.querySelector(".card__basket");
-    const exitDeletionConfirmation = document.querySelector('.modal-window__buttons-exit_deletion-confirmation');
     
     buttonDelete.addEventListener('click', function (e) {
         popupdeletionConfirmation.classList.add("shadow_show")
         formDeletionConfirmation.cardId = e.target.parentElement.id;
     });
 
-    exitDeletionConfirmation.addEventListener('click', function () {
-        popupdeletionConfirmation.classList.remove("shadow_show")
-    });
 
     if (data.owner._id == "0016546f4b595052e8542d69"){
         buttonDelete.classList.add("card__basket_visible")
@@ -111,7 +107,9 @@ async function renderServerCards() {
 renderServerCards();
 
 //добавление карточки
-const addCardForm = addCardPopup.querySelector(".form_plus");
+export const addCardForm = addCardPopup.querySelector(".form_plus");
+
+
 
 addCardForm.addEventListener('submit', async function (e) {
     e.preventDefault();

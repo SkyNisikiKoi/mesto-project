@@ -1,17 +1,12 @@
 @import url(../../vendor/normalize.css);
 @import url(../../vendor/Font.css);
 
-@import url(../blocks/popup/__buttons-exit/popup__buttons-exit.css);
 @import url(../blocks/popup/__modal-window/popup__modal-window.css);
-@import url(../blocks/popup/__shadow/popup__shadow.css);
 @import url(../blocks/popup/__text/popup__text.css);
 @import url(../blocks/popup/__image/popup__image.css);
 
 @import url(../blocks/page/page.css);
 @import url(../blocks/shadow/shadow.css);
-@import url(../blocks/shadow/_plus/shadow_plus.css);
-@import url(../blocks/shadow/_update-avatar/shadow_update-avatar.css);
-@import url(../blocks/shadow/_deletion-confirmation/shadow_deletion-confirmation.css);
 
 /* После основного стиля */
 @import url(../blocks/shadow/_show/shadow_show.css);
@@ -54,19 +49,15 @@
 
 @import url(../blocks/modal-window/modal-window.css);
 @import url(../blocks/modal-window/__buttons-exit/modal-window__buttons-exit.css);
-@import url(../blocks/modal-window/_plus/modal-window__buttons-exit_plus.css);
 @import url(../blocks/modal-window/_plus/modal-window_plus.css);
-@import url(../blocks/modal-window/_update-avatar/modal-window__buttons-exit_update-avatar.css);
 @import url(../blocks/modal-window/_update-avatar/modal-window_update-avatar.css);
-@import url(../blocks/modal-window/_deletion-confirmation/modal-window__buttons-exit_deletion-confirmation.css);
-@import url(../blocks/modal-window//_deletion-confirmation/modal-window_deletion-confirmation.css);
+
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__contact-info/form__contact-info.css);
 @import url(../blocks/form/__text/form__text.css);
 @import url(../blocks/form/__item/form__item.css);
 @import url(../blocks/form/__button-save/form__button-save.css);
-@import url(../blocks/form/_deletion-confirmation/form__button-save_deletion-confirmation.css);
 @import url(../blocks/form/_type_error/form__item_type_error.css);
 @import url(../blocks/form/__input-error/form__input-error.css);
 @import url(../blocks/form/_active/form__input-error_active.css);

@@ -35,6 +35,7 @@ import { textName } from './components/modal.js';
 import { textTitle } from './components/modal.js';
 import { textLink } from './components/modal.js';
 
+import { addCardPopup } from './components/modal.js';
 import { saveEditProfile } from './components/api.js';
 import { deleteCard } from './components/api.js';
 import { saveEditAvatar } from './components/api.js';
@@ -42,7 +43,7 @@ import { saveEditAvatar } from './components/api.js';
 import { exitButtonModalPic } from './components/card.js';
 import { formDeletionConfirmation } from './components/card.js';
 import { popupdeletionConfirmation } from './components/card.js';
-
+import { addCardForm } from './components/card.js';
 
 document.addEventListener('keydown', function (e) {
     popupCloseEsc(e);
@@ -93,13 +94,6 @@ buttonImage.addEventListener('click', function () {
 }
 );
 
-exitUpdateAvatar.addEventListener('click', function () {
-    closePopup(updateAvatar);
-}
-);
-
-
-
 profileButtonRedaction.addEventListener('click', function () {
     openPopup(profilePopup);
     textName.value = profileTitle.textContent;
@@ -111,20 +105,18 @@ modalWindowButtonExit.addEventListener('click', function () {
     closePopup(profilePopup);
 }
 );
+const formButtonSave = addCardPopup.querySelector(".form__button-save");
 
 addCardButton.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
     openPopup(addCardPopup);
-    textTitle.value = '';
-    textLink.value = '';
+       addCardForm.reset();
+    formButtonSave.setAttribute('disabled', 'disabled');
+    formButtonSave.classList.add("form__button-save_inactive");
 }
 );
 
-exitButtonCardPopup.addEventListener('click', function () {
-    closePopup(addCardPopup);
-}
-);
 
 
 formDeletionConfirmation.addEventListener('submit', async function (e) {
