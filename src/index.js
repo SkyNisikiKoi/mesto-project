@@ -60,11 +60,14 @@ profileButtonRedaction.addEventListener('click', function () {
 }
 );
 
+const formButtonSave = addCardPopup.querySelector(".form__button-save");
+
 addCardButton.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
     openPopup(addCardPopup);
     addCardForm.reset();
-    
+    formButtonSave.setAttribute('disabled', 'disabled');
+    formButtonSave.classList.add("form__button-save_inactive");
 }
 );

@@ -94,6 +94,8 @@ cardsOld.forEach(function (item) {
 //добавление карточки
 export const addCardForm = addCardPopup.querySelector(".form_plus");
 
+
+
 addCardForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -102,6 +104,7 @@ addCardForm.addEventListener('submit', function (e) {
         img: textLink.value
     };
 
+    
     renderCard(data, cardList);
 
     closePopup(addCardPopup);
