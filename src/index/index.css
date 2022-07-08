@@ -51,6 +51,8 @@
 @import url(../blocks/modal-window/__buttons-exit/modal-window__buttons-exit.css);
 @import url(../blocks/modal-window/_plus/modal-window_plus.css);
 @import url(../blocks/modal-window/_update-avatar/modal-window_update-avatar.css);
+@import url(../blocks/modal-window//_deletion-confirmation/modal-window_deletion-confirmation.css);
+
 
 
 @import url(../blocks/form/form.css);
@@ -62,6 +64,7 @@
 @import url(../blocks/form/__input-error/form__input-error.css);
 @import url(../blocks/form/_active/form__input-error_active.css);
 @import url(../blocks/form/_inactive/form__button-save_inactive.css);
+@import url(../blocks/form/_deletion-confirmation/form__button-save_deletion-confirmation.css);
 
 
 

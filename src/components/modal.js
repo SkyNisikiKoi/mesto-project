@@ -1,5 +1,4 @@
 export const profileButtonRedaction = document.querySelector(".profile__button-redaction");
-export const modalWindowButtonExit = document.querySelector('.modal-window__buttons-exit');
 
 export const profileTitle = document.querySelector('.profile__title');
 export const profileSubtitle = document.querySelector('.profile__subtitle');
