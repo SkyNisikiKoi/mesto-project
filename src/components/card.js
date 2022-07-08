@@ -91,7 +91,7 @@ const createCard = function (data) {
     const buttonDelete = cardElement.querySelector(".card__basket");
 
     buttonDelete.addEventListener('click', function (e) {
-        popupdeletionConfirmation.classList.add("shadow_show")
+        openPopup(popupdeletionConfirmation)
         formDeletionConfirmation.cardId = e.target.parentElement.id;
     });
 
@@ -111,7 +111,7 @@ const renderCard = function (data, container) {
 loadCards()
     .then(checkResponse)
     .then((result) => {
-        result.forEach(function (item) {
+        result.reverse().forEach(function (item) {
             renderCard(item, cardList);
         });
     })
