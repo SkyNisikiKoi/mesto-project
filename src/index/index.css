@@ -42,7 +42,7 @@
 @import url(../blocks/card/__basket/card__basket.css);
 @import url(../blocks/card/__block-like/card__block-like.css);
 @import url(../blocks/card/__count/card__count.css);
-@import url(../blocks/card/_visible/.card__basket_visible);
+@import url(../blocks/card/_visible/.card__basket_visible.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
@@ -51,9 +51,7 @@
 @import url(../blocks/modal-window/__buttons-exit/modal-window__buttons-exit.css);
 @import url(../blocks/modal-window/_plus/modal-window_plus.css);
 @import url(../blocks/modal-window/_update-avatar/modal-window_update-avatar.css);
-@import url(../blocks/modal-window//_deletion-confirmation/modal-window_deletion-confirmation.css);
-
-
+@import url(../blocks/modal-window/_deletion-confirmation/modal-window_deletion-confirmation.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__contact-info/form__contact-info.css);

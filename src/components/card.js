@@ -21,7 +21,7 @@ const cardsTemplate = document.querySelector("#card-template").content.querySele
 export const formDeletionConfirmation = document.querySelector('.form_deletion-confirmation');
 
 const modalPic = document.querySelector(".popup__image");
-export const popupdeletionConfirmation = document.querySelector('.popup__deletion-confirmation');
+export const popupDeletionConfirmation = document.querySelector('.popup__deletion-confirmation');
 
 
 // попап изображения
@@ -88,7 +88,7 @@ const createCard = function (data) {
     const buttonDelete = cardElement.querySelector(".card__basket");
 
     buttonDelete.addEventListener('click', function (e) {
-        openPopup(popupdeletionConfirmation)
+        openPopup(popupDeletionConfirmation)
         formDeletionConfirmation.cardId = e.target.parentElement.id;
     });
 
