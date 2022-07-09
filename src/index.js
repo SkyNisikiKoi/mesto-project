@@ -22,7 +22,6 @@ import { closePopup } from './components/modal.js';
 import { profilePopup } from './components/modal.js';
 import { imageAvatar } from './components/modal.js';
 import { buttonImage } from './components/modal.js';
-import { imagePopup } from './components/modal.js';
 import { openPopup } from './components/modal.js';
 import { updateAvatar } from './components/modal.js';
 import { profileButtonRedaction } from './components/modal.js';
@@ -36,12 +35,13 @@ import { deleteCard } from './components/api.js';
 import { saveEditAvatar } from './components/api.js';
 import { loadUserData } from './components/api.js';
 import { checkResponse } from './components/api.js';
+import { loadCards } from './components/api.js';
 
 import { formDeletionConfirmation } from './components/card.js';
 import { popupdeletionConfirmation } from './components/card.js';
 import { addCardForm } from './components/card.js';
-
-
+import { cardList } from './components/card.js';
+import { renderCard } from './components/card.js';
 
 document.addEventListener('keydown', function (e) {
     popupCloseEsc(e);
@@ -159,16 +159,31 @@ formUpdateAvatar.addEventListener('submit', function () {
 });
 
 
+Promise.all([loadUserData(), loadCards()])
+    .then(([userData, cards]) => {
+        // тут установка данных пользователя
+        loadUserData()
+            .then(checkResponse)
+            .then((dataUser) => {
+                profileTitle.textContent = dataUser.name;
+                profileSubtitle.textContent = dataUser.about;
+                imageAvatar.setAttribute("src", dataUser.avatar);
+                profileSubtitle.textContent = dataUser.about;
+                userId = dataUser._id;
+            })
 
-loadUserData()
-    .then(checkResponse)
-    .then((dataUser) => {
-        profileTitle.textContent = dataUser.name;
-        profileSubtitle.textContent = dataUser.about;
-        imageAvatar.setAttribute("src", dataUser.avatar);
-        profileSubtitle.textContent = dataUser.about;
-        userId = dataUser._id;
+        // и тут отрисовка карточек
+
+        loadCards()
+            .then(checkResponse)
+            .then((result) => {
+                result.reverse().forEach(function (item) {
+                    renderCard(item, cardList);
+                });
+            })
+
     })
     .catch((err) => {
         console.log(err);
     });
+

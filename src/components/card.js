@@ -1,5 +1,3 @@
-import { loadCards } from './api.js';
-
 import { popupText } from './modal.js';
 import { closePopup } from './modal.js';
 import { textTitle } from './modal.js';
@@ -18,13 +16,12 @@ import { userId } from '../index.js';
 
 
 
-const cardList = document.querySelector(".elements");
+export const cardList = document.querySelector(".elements");
 const cardsTemplate = document.querySelector("#card-template").content.querySelector('.card')
 export const formDeletionConfirmation = document.querySelector('.form_deletion-confirmation');
 
 const modalPic = document.querySelector(".popup__image");
 export const popupdeletionConfirmation = document.querySelector('.popup__deletion-confirmation');
-
 
 
 // попап изображения
@@ -103,23 +100,10 @@ const createCard = function (data) {
     return cardElement;
 }
 
-const renderCard = function (data, container) {
+export const renderCard = function (data, container) {
     const newCard = createCard(data);
     container.prepend(newCard);
 };
-
-loadCards()
-    .then(checkResponse)
-    .then((result) => {
-        result.reverse().forEach(function (item) {
-            renderCard(item, cardList);
-        });
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-
-
 
 
 //добавление карточки
