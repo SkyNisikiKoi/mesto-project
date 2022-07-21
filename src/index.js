@@ -2,8 +2,8 @@ import './index/index.css';
 import './components/card.js';
 import './components/modal.js';
 import './components/utils.js';
-import './components/validate.js';
-import './components/api';
+import {Api} from './components/api.js';
+
 
 
 const preload = document.querySelector(".preload");
@@ -30,19 +30,25 @@ import {addCardButton} from './components/modal.js';
 import {addCardPopup} from './components/modal.js';
 import {textName} from './components/modal.js';
 
-import {saveEditProfile} from './components/api.js';
-import {deleteCard} from './components/api.js';
-import {saveEditAvatar} from './components/api.js';
-import {loadUserData} from './components/api.js';
-import {checkResponse} from './components/api.js';
-import {loadCards} from './components/api.js';
 
 import {formDeletionConfirmation} from './components/card.js';
 import {popupDeletionConfirmation} from './components/card.js';
 import {addCardForm} from './components/card.js';
 import {cardList} from './components/card.js';
 import {renderCard} from './components/card.js';
+import {Card} from './components/card.js';
+import {FormValidator} from './components/formValidator.js';
 
+export const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/plus-cohort-13',
+    headers: {
+      authorization: '15612dfc-e819-4f89-bf79-39ea6734df41',
+      'Content-Type': 'application/json'
+    }
+  }); 
+
+const cardsTemplate = document.querySelector("#card-template").content.querySelector('.card')
+  
 document.addEventListener('keydown', function (e) {
     popupCloseEsc(e);
 });
@@ -55,8 +61,8 @@ editProfileForm.addEventListener('submit', (e) => {
 
     buttonSave.textContent = 'Сохранение...';
 
-    saveEditProfile(textName.value, textDescription.value)
-        .then(checkResponse)
+    api.saveEditProfile(textName.value, textDescription.value)
+        .then(api.checkResponse)
         .then((result) => {
             profileTitle.textContent = result.name;
             profileSubtitle.textContent = result.about;
@@ -115,8 +121,8 @@ formDeletionConfirmation.addEventListener('submit', function (e) {
 
     buttonSave.textContent = 'Сохранение...';
 
-    deleteCard(e.target.cardId)
-        .then(checkResponse)
+    api.deleteCard(e.target.cardId)
+        .then(api.checkResponse)
         .then(() => {
             closePopup(popupDeletionConfirmation);
             const cardToDelete = document.getElementById(e.target.cardId);
@@ -142,8 +148,8 @@ formUpdateAvatar.addEventListener('submit', function () {
 
     buttonSave.textContent = 'Сохранение...';
 
-    saveEditAvatar(link)
-        .then(checkResponse)
+    api.saveEditAvatar(link)
+        .then(api.checkResponse)
         .then((result) => {
             imageAvatar.setAttribute('src', result.avatar);
             closePopup(updateAvatar);
@@ -157,9 +163,9 @@ formUpdateAvatar.addEventListener('submit', function () {
 });
 
 
-Promise.all([loadUserData(), loadCards()])
+Promise.all([api.loadUserData(), api.loadCards()])
     .then(([userData, cards]) => {
-        checkResponse(userData)
+        api.checkResponse(userData)
             .then((res) => {
                 profileTitle.textContent = res.name;
                 profileSubtitle.textContent = res.about;
@@ -171,10 +177,11 @@ Promise.all([loadUserData(), loadCards()])
                 console.log(err);
             });
 
-        checkResponse(cards)
+        api.checkResponse(cards)
             .then((res) => {
                 res.reverse().forEach(function (item) {
-                    renderCard(item, cardList);
+                    const newCard = new Card(item, cardsTemplate);
+                    renderCard(newCard.createCard(), cardList);
                 })
             })
             .catch((err) => {
@@ -185,3 +192,42 @@ Promise.all([loadUserData(), loadCards()])
         console.log(err);
     });
 
+    const formElement = document.querySelector('.form');
+ 
+    const newFormValidation = new FormValidator ({
+        formSelector: '.form',
+        inputSelector: '.form__item',
+        submitButtonSelector: '.form__button-save',
+        inactiveButtonClass: 'form__button-save_inactive',
+        inputErrorClass: 'form__item_type_error',
+        errorClass: 'form__input-error_active'
+        }, formElement
+      ); 
+
+      const formElementPlus = document.querySelector('.form_plus');
+
+      const newFormValidationPlus = new FormValidator ({
+        formSelector: '.form_plus',
+        inputSelector: '.form__item',
+        submitButtonSelector: '.form__button-save',
+        inactiveButtonClass: 'form__button-save_inactive',
+        inputErrorClass: 'form__item_type_error',
+        errorClass: 'form__input-error_active'
+        }, formElementPlus
+      ); 
+
+      const formElementAvatar = document.querySelector('.form_update-avatar');
+
+      const newFormValidationAvatar = new FormValidator ({
+        formSelector: '.form_update-avatar',
+        inputSelector: '.form__item',
+        submitButtonSelector: '.form__button-save',
+        inactiveButtonClass: 'form__button-save_inactive',
+        inputErrorClass: 'form__item_type_error',
+        errorClass: 'form__input-error_active'
+        }, formElementAvatar
+      ); 
+
+      newFormValidation.enableValidation();
+      newFormValidationPlus.enableValidation();
+      newFormValidationAvatar.enableValidation();

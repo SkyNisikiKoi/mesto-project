@@ -1,92 +1,98 @@
-const config = {
-    baseUrl: 'https://mesto.nomoreparties.co/v1/plus-cohort-13',
-    headers: {
-        authorization: '15612dfc-e819-4f89-bf79-39ea6734df41',
-        'Content-Type': 'application/json'
+export class Api {
+    constructor(options) {
+      this.baseUrl = options.baseUrl,
+      this.headers = options.headers
     }
-};
-
-export function checkResponse(res) {
-    if (res.ok) {
-        return res.json();
+  
+    checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка ${res.status}`);
+    };
+    
+    loadUserData() {
+       return fetch(`${this.baseUrl}/users/me`, {
+            method: 'GET',
+            headers: this.headers
+        })
     }
-    return Promise.reject(`Ошибка ${res.status}`);
-};
-
-export function loadUserData() {
-   return fetch(`${config.baseUrl}/users/me`, {
-        method: 'GET',
-        headers: config.headers
-    })
-}
-
-
-export function loadCards() {
-    return fetch(`${config.baseUrl}/cards`, {
-        method: 'GET',
-        headers: config.headers
-    })
-};
-
-export function saveEditProfile(nameProfile, infProfile) {
-    return fetch(`${config.baseUrl}/users/me`, {
-        method: 'PATCH',
-        headers: config.headers,
-        body: JSON.stringify({
-            name: nameProfile,
-            about: infProfile
+    
+    
+    loadCards() {
+        return fetch(`${this.baseUrl}/cards`, {
+            method: 'GET',
+            headers: this.headers
         })
-    })
-};
-
-export function saveNewCard(nameCard, linkImageCard) {
-    return fetch(`${config.baseUrl}/cards`, {
-        method: 'POST',
-        headers: config.headers,
-        body: JSON.stringify({
-            name: nameCard,
-            link: linkImageCard
+    };
+    
+    saveEditProfile(nameProfile, infProfile) {
+        return fetch(`${this.baseUrl}/users/me`, {
+            method: 'PATCH',
+            headers: this.headers,
+            body: JSON.stringify({
+                name: nameProfile,
+                about: infProfile
+            })
         })
-    })
-}
-
-export function deleteCard(cardId) {
-    return fetch(`${config.baseUrl}/cards/${cardId}`, {
-        method: 'DELETE',
-        headers: config.headers,
-        body: JSON.stringify({
-            id: cardId
+    };
+    
+    saveNewCard(nameCard, linkImageCard) {
+        return fetch(`${this.baseUrl}/cards`, {
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify({
+                name: nameCard,
+                link: linkImageCard
+            })
         })
-    })
-};
-
-export function likeCard(cardId) {
-    return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
-        method: 'PUT',
-        headers: config.headers,
-        body: JSON.stringify({
-            id: cardId
+    }
+    
+    deleteCard(cardId) {
+        return fetch(`${this.baseUrl}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: this.headers,
+            body: JSON.stringify({
+                id: cardId
+            })
         })
-    })
-};
-
-export function deleteLikeCard(cardId) {
-    return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
-        method: 'DELETE',
-        headers: config.headers,
-        body: JSON.stringify({
-            id: cardId
+    };
+    
+    likeCard(cardId) {
+        return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: this.headers,
+            body: JSON.stringify({
+                id: cardId
+            })
         })
-    })
-};
-
-export function saveEditAvatar(linkAvatar) {
-    return fetch(`${config.baseUrl}/users/me/avatar`, {
-        method: 'PATCH',
-        headers: config.headers,
-        body: JSON.stringify({
-            avatar: linkAvatar
+    };
+    
+    deleteLikeCard(cardId) {
+        return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: this.headers,
+            body: JSON.stringify({
+                id: cardId
+            })
         })
-    })
-}
+    };
+    
+    saveEditAvatar(linkAvatar) {
+        return fetch(`${this.baseUrl}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: this.headers,
+            body: JSON.stringify({
+                avatar: linkAvatar
+            })
+        })
+    }
+  }
+  
+  
+
+
+
+
+
 
