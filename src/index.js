@@ -3,7 +3,7 @@ import './components/card.js';
 import './components/modal.js';
 import './components/utils.js';
 import {Api} from './components/api.js';
-
+import {Section} from './components/section';
 
 
 const preload = document.querySelector(".preload");
@@ -46,6 +46,14 @@ export const api = new Api({
       'Content-Type': 'application/json'
     }
   }); 
+
+const sectionCard = new Section({
+    items:[],
+    renderer: (data) => {
+        const newCard = new Card(data, cardsTemplate);
+        sectionCard.addItem(newCard.createCard());
+    }
+  }, ".elements")
 
 const cardsTemplate = document.querySelector("#card-template").content.querySelector('.card')
   
@@ -179,9 +187,11 @@ Promise.all([api.loadUserData(), api.loadCards()])
 
         api.checkResponse(cards)
             .then((res) => {
+                sectionCard.items = res
+                sectionCard.renderElements();
                 res.reverse().forEach(function (item) {
-                    const newCard = new Card(item, cardsTemplate);
-                    renderCard(newCard.createCard(), cardList);
+                    // const newCard = new Card(item, cardsTemplate);
+                    //renderCard(newCard.createCard(), cardList);
                 })
             })
             .catch((err) => {
@@ -231,3 +241,5 @@ Promise.all([api.loadUserData(), api.loadCards()])
       newFormValidation.enableValidation();
       newFormValidationPlus.enableValidation();
       newFormValidationAvatar.enableValidation();
+      console.log(sectionCard.items)
+      
