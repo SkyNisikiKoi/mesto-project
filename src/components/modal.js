@@ -8,8 +8,6 @@ export const editProfileForm = document.querySelector('.form');
 export const textName = editProfileForm.querySelector("#textName");
 export const textDescription = editProfileForm.querySelector("#textDescription");
 
-export const popupText = document.querySelector(".popup__text");
-
 export const profilePopup = document.querySelector(".shadow");
 export const imagePopup = document.querySelector(".popup__view-image");
 
@@ -20,33 +18,6 @@ export const textLink = addCardPopup.querySelector("#textLink");
 
 export const imageAvatar = document.querySelector('.profile__image');
 export const buttonImage = document.querySelector('.profile__button-redaction-image');
-
-import { popupCloseEsc } from './utils.js';
-
-
-const popups = document.querySelectorAll('.shadow')
-
-
-popups.forEach((popup) => {
-    popup.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('shadow_show')) {
-            closePopup(popup)
-        }
-        if (evt.target.classList.contains('modal-window__buttons-exit')) {
-            closePopup(popup)
-        }
-    })
-});
-
-export function openPopup(popup) {
-    popup.classList.add("shadow_show");
-    document.addEventListener('keydown', popupCloseEsc);
-};
-
-export function closePopup(popup) {
-    popup.classList.remove("shadow_show");
-    document.removeEventListener('keydown', popupCloseEsc);
-};
 
 export const addCardButton = document.querySelector(".profile__button-plus");
 

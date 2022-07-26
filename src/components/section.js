@@ -12,6 +12,6 @@ export class Section {
     }
 
     addItem(elementNoda){
-        this._container.append(elementNoda);
+        this._container.prepend(elementNoda);
     }
 }
