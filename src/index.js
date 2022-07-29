@@ -1,7 +1,6 @@
 import './index/index.css';
 import './components/card.js';
-import './components/modal.js';
-import './components/utils.js';
+import './components/constant.js';
 import { Api } from './components/api.js';
 import { Section } from './components/section';
 import { PopupWithImage } from './components/popupWithImage';
@@ -15,24 +14,19 @@ preload.classList.remove('preload');
 
 export let userId = '';
 
-//Закрытие попапов esc
+import { editProfileForm } from './components/constant.js';
+import { profileTitle } from './components/constant.js';
+import { profileSubtitle } from './components/constant.js';
+import { imageAvatar } from './components/constant.js';
+import { buttonImage } from './components/constant.js';
+import { profileButtonRedaction } from './components/constant.js';
+import { textDescription } from './components/constant.js';
+import { addCardButton } from './components/constant.js';
+import { addCardPopup } from './components/constant.js';
+import { textName } from './components/constant.js';
+import { formDeletionConfirmation } from './components/constant.js';
+import { addCardForm } from './components/constant.js';
 
-import { editProfileForm } from './components/modal.js';
-import { profileTitle } from './components/modal.js';
-import { profileSubtitle } from './components/modal.js';
-import { profilePopup } from './components/modal.js';
-import { imageAvatar } from './components/modal.js';
-import { buttonImage } from './components/modal.js';
-import { updateAvatar } from './components/modal.js';
-import { profileButtonRedaction } from './components/modal.js';
-import { textDescription } from './components/modal.js';
-import { addCardButton } from './components/modal.js';
-import { addCardPopup } from './components/modal.js';
-import { textName } from './components/modal.js';
-
-
-import { formDeletionConfirmation } from './components/card.js';
-import { addCardForm } from './components/card.js';
 import { Card } from './components/card.js';
 import { FormValidator } from './components/formValidator.js';
 
@@ -82,6 +76,7 @@ export const api = new Api({
 
 const popupNew = new PopupWithImage('.popup__view-image');
 popupNew.setEventListeners();
+
 const cardsTemplate = document.querySelector("#card-template").content.querySelector('.card');
 
 const newPopupWithSubmit = new PopupWithSubmit('.popup__deletion-confirmation');
@@ -90,9 +85,6 @@ newPopupWithSubmit.setEventListeners();
 const someHandleCardClick = (data) => {
     popupNew.open(data.link, data.name);
 };
-
-
-
 
 const someHandleLikeClick = (card, data) => {
     if (card.target.classList.contains("card__button_active")) {

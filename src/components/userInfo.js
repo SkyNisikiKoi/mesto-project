@@ -19,8 +19,6 @@ export class UserInfo {
     }
 
     setUserInfo(){
-        console.log(this.name)
-        console.log(this.description)
         this.infUserName.textContent = this.name;
         this.infUserDescription.textContent = this.description;
     }

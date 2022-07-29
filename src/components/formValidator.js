@@ -9,7 +9,7 @@ export class FormValidator {
        this.formElement = formElement
     }
 
-    hasInvalidInput(inputList) {
+    _hasInvalidInput(inputList) {
     
         return inputList.some((inputElement) => {
       
@@ -17,9 +17,9 @@ export class FormValidator {
         })
       };
     
-  toggleButtonState(inputList, buttonElement) {
+  _toggleButtonState(inputList, buttonElement) {
       
-        if (this.hasInvalidInput(inputList)) {
+        if (this._hasInvalidInput(inputList)) {
      
           buttonElement.classList.add(this.inactiveButtonClass);
           buttonElement.setAttribute('disabled', 'disabled');
@@ -31,29 +31,29 @@ export class FormValidator {
       };
     
       
- setEventListeners(formElement) {
+ setEventListeners(formElement) { //должен быть приватным?
         
         const inputList = Array.from(formElement.querySelectorAll(this.inputSelector));
        
         const buttonElement = formElement.querySelector(this.submitButtonSelector);
     
-        this.toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState(inputList, buttonElement);
       
         
         inputList.forEach((inputElement) => {
           
           inputElement.addEventListener('input', () => {
            
-            this.isValid(inputElement);
+            this._isValid(inputElement);
     
          
-            this.toggleButtonState(inputList, buttonElement);
+            this._toggleButtonState(inputList, buttonElement);
           });
         });
       };
     
     
-   showInputError(inputElement, errorMessage) {
+   _showInputError(inputElement, errorMessage) {
     
         const errorElement = document.getElementById(`${inputElement.id}-error`);
     
@@ -65,7 +65,7 @@ export class FormValidator {
       
     
     
-    hideInputError(inputElement) {
+    _hideInputError(inputElement) {
     
         const errorElement = document.getElementById(`${inputElement.id}-error`);
      
@@ -75,13 +75,13 @@ export class FormValidator {
       }; 
     
     
-    isValid(inputElement) {
+    _isValid(inputElement) {
         if (!inputElement.validity.valid) {
         
-            this.showInputError(inputElement, inputElement.validationMessage);
+            this._showInputError(inputElement, inputElement.validationMessage);
         } else {
     
-            this.hideInputError(inputElement);
+            this._hideInputError(inputElement);
         }
       };
      
