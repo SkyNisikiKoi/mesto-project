@@ -1,5 +1,5 @@
 .card__button {
-  background-image: url("../../../../images/Group.svg");
+  background-image: url("../../../images/Group.svg");
   border: none;
   background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
@@ -13,5 +13,5 @@
 }
 
 .card__button_active {
-  background-image: url(../../../../images/Union.svg);
+  background-image: url(../../../images/Union.svg);
 }

@@ -5,7 +5,7 @@
   border: none;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0);
-  background-image: url(../../../../images/Trash.svg);
+  background-image: url(../../../images/Trash.svg);
   width: 18px;
   height: 19px;
   background-size: cover;

@@ -7,7 +7,7 @@
   background-size: cover;
   width: 24px;
   height: 24px;
-  background-image: url(../../../../images/EditButton.svg);
+  background-image: url(../../../images/EditButton.svg);
   align-items: baseline;
   display: flex;
 }
