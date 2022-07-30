@@ -16,6 +16,7 @@ export class Api {
             method: 'GET',
             headers: this.headers
         })
+        .then(this.checkResponse)
     }
     
     
@@ -24,6 +25,7 @@ export class Api {
             method: 'GET',
             headers: this.headers
         })
+        .then(this.checkResponse)
     };
     
     saveEditProfile(nameProfile, infProfile) {
@@ -35,6 +37,7 @@ export class Api {
                 about: infProfile
             })
         })
+        .then(this.checkResponse)
     };
     
     saveNewCard(nameCard, linkImageCard) {
@@ -46,6 +49,7 @@ export class Api {
                 link: linkImageCard
             })
         })
+        .then(this.checkResponse)
     }
     
     deleteCard(cardId) {
@@ -56,6 +60,7 @@ export class Api {
                 id: cardId
             })
         })
+        .then(this.checkResponse)
     };
     
     likeCard(cardId) {
@@ -66,6 +71,7 @@ export class Api {
                 id: cardId
             })
         })
+        .then(this.checkResponse)
     };
     
     deleteLikeCard(cardId) {
@@ -76,6 +82,7 @@ export class Api {
                 id: cardId
             })
         })
+        .then(this.checkResponse)
     };
     
     saveEditAvatar(linkAvatar) {
@@ -86,6 +93,7 @@ export class Api {
                 avatar: linkAvatar
             })
         })
+        .then(this.checkResponse)
     }
   }
   

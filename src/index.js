@@ -1,12 +1,12 @@
 import './index/index.css';
-import './components/card.js';
-import './components/constant.js';
-import { Api } from './components/api.js';
-import { Section } from './components/section';
-import { PopupWithImage } from './components/popupWithImage';
-import { PopupWithForm } from './components/PopupWithForm';
+import './components/Card.js';
+import './utils/constant.js';
+import { Api } from './components/Api.js';
+import { Section } from './components/Section';
+import { PopupWithImage } from './components/РopupWithImage';
+import { PopupWithForm } from './components/РopupWithForm';
 import { PopupWithSubmit } from './components/PopupWithSubmit';
-import { UserInfo } from './components/userInfo';
+import { UserInfo } from './components/UserInfo';
 
 
 const preload = document.querySelector(".preload");
@@ -14,21 +14,21 @@ preload.classList.remove('preload');
 
 export let userId = '';
 
-import { editProfileForm } from './components/constant.js';
-import { profileTitle } from './components/constant.js';
-import { profileSubtitle } from './components/constant.js';
-import { imageAvatar } from './components/constant.js';
-import { buttonImage } from './components/constant.js';
-import { profileButtonRedaction } from './components/constant.js';
-import { textDescription } from './components/constant.js';
-import { addCardButton } from './components/constant.js';
-import { addCardPopup } from './components/constant.js';
-import { textName } from './components/constant.js';
-import { formDeletionConfirmation } from './components/constant.js';
-import { addCardForm } from './components/constant.js';
+import { editProfileForm } from './utils/constant.js';
+import { profileTitle } from './utils/constant.js';
+import { profileSubtitle } from './utils/constant.js';
+import { imageAvatar } from './utils/constant.js';
+import { buttonImage } from './utils/constant.js';
+import { profileButtonRedaction } from './utils/constant.js';
+import { textDescription } from './utils/constant.js';
+import { addCardButton } from './utils/constant.js';
+import { addCardPopup } from './utils/constant.js';
+import { textName } from './utils/constant.js';
+import { formDeletionConfirmation } from './utils/constant.js';
+import { addCardForm } from './utils/constant.js';
 
-import { Card } from './components/card.js';
-import { FormValidator } from './components/formValidator.js';
+import { Card } from './components/Card.js';
+import { FormValidator } from './components/FormValidator.js';
 
 const formElement = document.querySelector('.form');
 
@@ -89,7 +89,7 @@ const someHandleCardClick = (data) => {
 const someHandleLikeClick = (card, data) => {
     if (card.target.classList.contains("card__button_active")) {
         api.deleteLikeCard(data._id)
-            .then(api.checkResponse)
+            
             .then((result) => {
                 card.target.classList.toggle("card__button_active");
                 card.target.nextElementSibling.textContent = result.likes.length;
@@ -99,7 +99,6 @@ const someHandleLikeClick = (card, data) => {
             });
     } else {
         api.likeCard(data._id)
-            .then(api.checkResponse)
             .then((result) => {
                 card.target.classList.toggle("card__button_active");
                 card.target.nextElementSibling.textContent = result.likes.length;
@@ -118,7 +117,6 @@ const someHandleDeleteIconClick = (data) => {
         buttonSave.textContent = 'Сохранение...';
 
         api.deleteCard(data._id)
-            .then(api.checkResponse)
             .then(() => {
                 newPopupWithSubmit.close();
                 const cardToDelete = document.getElementById(data._id);
@@ -151,15 +149,12 @@ const sectionCard = new Section({
 
 const newGetUserInfo = new UserInfo({infUserName:'.profile__title', infUserDescription:'.profile__subtitle'}, () => {
      return api.loadUserData()
-     .then((userData) => {
-        return api.checkResponse(userData)
-            .then((res) => {
-                return {userName:res.name, userDescription:res.about}
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-})
+     .then((res) => {
+        return {userName:res.name, userDescription:res.about}
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 });
 
 const popupUserInfo = new PopupWithForm('.popup__edit-profile', (data) => {
@@ -169,7 +164,6 @@ const popupUserInfo = new PopupWithForm('.popup__edit-profile', (data) => {
     buttonSave.textContent = 'Сохранение...';
 
     api.saveEditProfile(data.name, data.description)
-        .then(api.checkResponse)
         .then(() => newGetUserInfo.getUserInfo())
         .then(() => newGetUserInfo.setUserInfo())
         .then(() => {          
@@ -196,7 +190,6 @@ const popupUserAvatar = new PopupWithForm('.popup__edit-avatar', () => {
     buttonSave.textContent = 'Сохранение...';
 
     api.saveEditAvatar(link)
-        .then(api.checkResponse)
         .then((result) => {
             imageAvatar.setAttribute('src', result.avatar);
             popupUserAvatar.close();
@@ -221,7 +214,6 @@ const popupAddCard = new PopupWithForm('.popup__add-card', (data) => {
     buttonSave.textContent = 'Сохранение...';
 
     api.saveNewCard(data.name, data.link)
-        .then(api.checkResponse)
         .then((result) => {
             const newCard = new Card({
                 data: result,
@@ -288,27 +280,17 @@ addCardButton.addEventListener('click', function (e) {
 
 Promise.all([api.loadUserData(), api.loadCards()])
     .then(([userData, cards]) => {
-        api.checkResponse(userData)
-            .then((res) => {
-                profileTitle.textContent = res.name;
-                profileSubtitle.textContent = res.about;
-                imageAvatar.setAttribute("src", res.avatar);
-                profileSubtitle.textContent = res.about;
-                userId = res._id;
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+       
+                profileTitle.textContent = userData.name;
+                profileSubtitle.textContent = userData.about;
+                imageAvatar.setAttribute("src", userData.avatar);
+                profileSubtitle.textContent = userData.about;
+                userId = userData._id;
 
-        api.checkResponse(cards)
-            .then((res) => {
-                sectionCard.items = res
+                sectionCard.items = cards
                 sectionCard.renderElements();
 
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        
     })
     .catch((err) => {
         console.log(err);

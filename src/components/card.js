@@ -1,5 +1,5 @@
 
-import { addCardPopup } from './constant.js';
+
 import { userId } from '../index.js';
 
 export class Card {
