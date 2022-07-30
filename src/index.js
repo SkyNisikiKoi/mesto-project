@@ -1,5 +1,5 @@
 import './index/index.css';
-import './components/Card.js';
+import './components/Сard.js';
 import './utils/constant.js';
 import { Api } from './components/Api.js';
 import { Section } from './components/Section';
@@ -27,10 +27,12 @@ import { textName } from './utils/constant.js';
 import { formDeletionConfirmation } from './utils/constant.js';
 import { addCardForm } from './utils/constant.js';
 
-import { Card } from './components/Card.js';
+import { Card } from './components/Сard.js';
 import { FormValidator } from './components/FormValidator.js';
 
+const buttonSave = formDeletionConfirmation.querySelector('.form__button-save_deletion-confirmation');
 const formElement = document.querySelector('.form');
+
 
 const newFormValidation = new FormValidator({
     formSelector: '.form',
@@ -89,7 +91,7 @@ const someHandleCardClick = (data) => {
 const someHandleLikeClick = (card, data) => {
     if (card.target.classList.contains("card__button_active")) {
         api.deleteLikeCard(data._id)
-            
+
             .then((result) => {
                 card.target.classList.toggle("card__button_active");
                 card.target.nextElementSibling.textContent = result.likes.length;
@@ -111,8 +113,6 @@ const someHandleLikeClick = (card, data) => {
 
 const someHandleDeleteIconClick = (data) => {
     newPopupWithSubmit.setSubmitCallback(() => {
-
-        const buttonSave = formDeletionConfirmation.querySelector('.form__button-save_deletion-confirmation');
 
         buttonSave.textContent = 'Сохранение...';
 
@@ -147,26 +147,28 @@ const sectionCard = new Section({
     }
 }, ".elements")
 
-const newGetUserInfo = new UserInfo({infUserName:'.profile__title', infUserDescription:'.profile__subtitle'}, () => {
-     return api.loadUserData()
-     .then((res) => {
-        return {userName:res.name, userDescription:res.about}
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+const newGetUserInfo = new UserInfo({ infUserName: '.profile__title', infUserDescription: '.profile__subtitle', userAvatarSelector: '.profile__image' }, () => {
+    return api.loadUserData()
+        .then((res) => {
+            return { userName: res.name, userDescription: res.about }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
 const popupUserInfo = new PopupWithForm('.popup__edit-profile', (data) => {
 
-    const buttonSave = editProfileForm.querySelector('.form__button-save');
+    const buttonSave = popupUserInfo.popup.querySelector('.form__button-save');
 
     buttonSave.textContent = 'Сохранение...';
 
     api.saveEditProfile(data.name, data.description)
-        .then(() => newGetUserInfo.getUserInfo())
-        .then(() => newGetUserInfo.setUserInfo())
-        .then(() => {          
+        .then(newGetUserInfo.getUserInfo())
+        .then((res) => {
+            newGetUserInfo.setUserInfo(res.name, res.about)
+        })
+        .then(() => {
             popupUserInfo.close();
         })
         .catch((err) => {
@@ -177,7 +179,7 @@ const popupUserInfo = new PopupWithForm('.popup__edit-profile', (data) => {
         })
 });
 
-popupUserInfo.setEventListeners(() => {});
+popupUserInfo.setEventListeners();
 
 const popupUserAvatar = new PopupWithForm('.popup__edit-avatar', () => {
 
@@ -191,7 +193,7 @@ const popupUserAvatar = new PopupWithForm('.popup__edit-avatar', () => {
 
     api.saveEditAvatar(link)
         .then((result) => {
-            imageAvatar.setAttribute('src', result.avatar);
+            newGetUserInfo.setUserInfo(result);
             popupUserAvatar.close();
         })
         .catch((err) => {
@@ -202,14 +204,12 @@ const popupUserAvatar = new PopupWithForm('.popup__edit-avatar', () => {
         })
 });
 
-popupUserAvatar.setEventListeners(() => {
-    formElementAvatar.reset();
-});
+popupUserAvatar.setEventListeners();
 
 
 const popupAddCard = new PopupWithForm('.popup__add-card', (data) => {
 
-    const buttonSave = addCardForm.querySelector('.form__button-save');
+    const buttonSave = popupAddCard.popup.querySelector('.form__button-save');
 
     buttonSave.textContent = 'Сохранение...';
 
@@ -238,9 +238,7 @@ const popupAddCard = new PopupWithForm('.popup__add-card', (data) => {
         })
 })
 
-popupAddCard.setEventListeners(() => {
-    formElementPlus.reset();
-});
+popupAddCard.setEventListeners();
 
 
 imageAvatar.addEventListener('mouseover', function () {
@@ -280,17 +278,15 @@ addCardButton.addEventListener('click', function (e) {
 
 Promise.all([api.loadUserData(), api.loadCards()])
     .then(([userData, cards]) => {
-       
-                profileTitle.textContent = userData.name;
-                profileSubtitle.textContent = userData.about;
-                imageAvatar.setAttribute("src", userData.avatar);
-                profileSubtitle.textContent = userData.about;
-                userId = userData._id;
 
-                sectionCard.items = cards
-                sectionCard.renderElements();
+        newGetUserInfo.setUserInfo(userData);
 
-        
+        userId = userData._id;
+
+        sectionCard.items = cards
+        sectionCard.renderElements();
+
+
     })
     .catch((err) => {
         console.log(err);

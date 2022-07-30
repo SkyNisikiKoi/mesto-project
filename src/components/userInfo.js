@@ -1,13 +1,15 @@
 
 
 export class UserInfo {
-    constructor({infUserName, infUserDescription}, getUserInoCallback) {
-        this.infUserName = document.querySelector(infUserName);
-        this.infUserDescription = document.querySelector(infUserDescription);
-        this.getUserInoCallback = getUserInoCallback;
-        this.name = "";
-        this.description = "";
+    constructor({infUserName, infUserDescription, userAvatarSelector }, getUserInoCallback) {
+        this.infUserName = document.querySelector(infUserName),
+        this.infUserDescription = document.querySelector(infUserDescription),
+        this.userAvatar = document.querySelector(userAvatarSelector),
+        this.getUserInoCallback = getUserInoCallback,
+        this.name = "",
+        this.description = ""
     }
+
 
     getUserInfo(){
         return this.getUserInoCallback()
@@ -18,9 +20,12 @@ export class UserInfo {
         
     }
 
-    setUserInfo(){
-        this.infUserName.textContent = this.name;
-        this.infUserDescription.textContent = this.description;
+
+    
+    setUserInfo({ name, about, avatar}){
+        this.infUserName.textContent = name;
+        this.infUserDescription.textContent = about;
+        this.userAvatar.setAttribute('src', avatar);
     }
 }
 

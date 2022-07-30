@@ -3,17 +3,15 @@ import { Popup } from './Рopup';
 export class PopupWithImage extends Popup {
     constructor(popupSelector) {
         super(popupSelector)
+        this.modalPic = document.querySelector(".popup__image");
+        this.popupText = document.querySelector(".popup__text");
     }
 
     open(src, alt) {
-        const modalPic = document.querySelector(".popup__image");
-        const popupText = document.querySelector(".popup__text");
+        this.modalPic.src = src;
+        this.modalPic.alt = alt;
+        this.popupText.textContent = alt;
 
-        modalPic.src = src;
-        modalPic.alt = alt;
-        popupText.textContent = alt;
-
-        this.popup.classList.add("shadow_show");
-        document.addEventListener('keydown', this._handleEscClose);
+        super.open();
     }
 }

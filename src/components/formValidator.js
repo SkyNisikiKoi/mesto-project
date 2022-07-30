@@ -6,48 +6,46 @@ export class FormValidator {
        this.inactiveButtonClass = options.inactiveButtonClass,
        this.inputErrorClass = options.inputErrorClass,
        this.errorClass = options.errorClass,
-       this.formElement = formElement
+       this.formElement = formElement,
+       this._inputList = Array.from(this.formElement.querySelectorAll(this.inputSelector)),
+       this._buttonElement = this.formElement.querySelector(this.submitButtonSelector)
     }
 
-    _hasInvalidInput(inputList) {
+    _hasInvalidInput() {
     
-        return inputList.some((inputElement) => {
+        return this._inputList.some((inputElement) => {
       
           return !inputElement.validity.valid;
         })
       };
     
-  _toggleButtonState(inputList, buttonElement) {
+  _toggleButtonState() {
       
-        if (this._hasInvalidInput(inputList)) {
+        if (this._hasInvalidInput(this._inputList)) {
      
-          buttonElement.classList.add(this.inactiveButtonClass);
-          buttonElement.setAttribute('disabled', 'disabled');
+            this._buttonElement.classList.add(this.inactiveButtonClass);
+            this._buttonElement.setAttribute('disabled', 'disabled');
         } else {
            
-          buttonElement.classList.remove(this.inactiveButtonClass);
-          buttonElement.removeAttribute('disabled');
+            this._buttonElement.classList.remove(this.inactiveButtonClass);
+            this._buttonElement.removeAttribute('disabled');
         }
       };
     
       
- setEventListeners(formElement) { //должен быть приватным?
+ _setEventListeners() { 
         
-        const inputList = Array.from(formElement.querySelectorAll(this.inputSelector));
-       
-        const buttonElement = formElement.querySelector(this.submitButtonSelector);
-    
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState();
       
         
-        inputList.forEach((inputElement) => {
+        this._inputList.forEach((inputElement) => {
           
           inputElement.addEventListener('input', () => {
            
             this._isValid(inputElement);
     
          
-            this._toggleButtonState(inputList, buttonElement);
+            this._toggleButtonState();
           });
         });
       };
@@ -86,13 +84,12 @@ export class FormValidator {
       };
      
     enableValidation(){
-        const formElement = document.querySelector(this.formSelector);
     
-        formElement.addEventListener('submit', (evt) => {
+        this.formElement.addEventListener('submit', (evt) => {
             
             evt.preventDefault();
         });
-        this.setEventListeners(formElement);
+        this._setEventListeners();
     }
 
     
