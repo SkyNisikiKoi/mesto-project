@@ -14,8 +14,9 @@ export class UserInfo {
     getUserInfo(){
         return this.getUserInoCallback()
         .then((result) => {
-            this.name = result.userName;
-            this.description = result.userDescription;
+            this.name = result.name;
+            this.description = result.about;
+            return result;
         })
         
     }

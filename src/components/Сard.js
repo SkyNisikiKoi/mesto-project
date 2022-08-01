@@ -1,7 +1,3 @@
-
-
-import { userId } from '../index.js';
-
 export class Card {
     constructor(options, template) {
         this.data = options.data,
@@ -28,7 +24,7 @@ export class Card {
     _setHandleLikeClick() {
         this._buttonLike.addEventListener('click', (e) => {
             e.preventDefault();
-            this.handleLikeClick(e, this.data);
+            this.handleLikeClick(this.data, this);
 
         });
     }
@@ -44,12 +40,12 @@ export class Card {
     _setCardMarkup(){
 
         this.data.likes.forEach((like) => {
-            if (like._id == userId) {
+            if (like._id == this.userId) {
                 this._buttonLike.classList.add('card__button_active');
             };
         })
 
-        if (this.data.owner._id == userId) {
+        if (this.data.owner._id == this.userId) {
             this._buttonDelete.classList.add("card__basket_visible")
         };
     }
@@ -75,7 +71,20 @@ export class Card {
         this._setHandleButtonDelete();
     }
 
+    isLiked(){
+        if (this._buttonLike.classList.contains("card__button_active")) {
+            return true
+        } else {return false}
+    }
     
+    toggleLikes(likes){
+        this._buttonLike.classList.toggle("card__button_active")
+        this._likeCount.textContent = likes.length;
+    }
+
+    setUserId(userId){
+        this.userId = userId;
+    }
 };
 
 
