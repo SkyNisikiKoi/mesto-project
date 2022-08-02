@@ -10,7 +10,7 @@ export class Card {
             this._cardText = this._cardElement.querySelector('.card__text'),
             this._likeCount = this._cardElement.querySelector('.card__count'),
             this._buttonLike = this._cardElement.querySelector(".card__button");
-            this._buttonDelete = this._cardElement.querySelector(".card__basket");
+        this._buttonDelete = this._cardElement.querySelector(".card__basket");
     }
 
     _setHandleClickImage() {
@@ -37,7 +37,7 @@ export class Card {
         });
     }
 
-    _setCardMarkup(){
+    _setCardMarkup() {
 
         this.data.likes.forEach((like) => {
             if (like._id == this.userId) {
@@ -61,7 +61,7 @@ export class Card {
         this._setEventListeners();
 
         this._setCardMarkup();
-    
+
         return this._cardElement;
     }
 
@@ -71,18 +71,18 @@ export class Card {
         this._setHandleButtonDelete();
     }
 
-    isLiked(){
+    isLiked() {
         if (this._buttonLike.classList.contains("card__button_active")) {
             return true
-        } else {return false}
+        } else { return false }
     }
-    
-    toggleLikes(likes){
+
+    toggleLikes(likes) {
         this._buttonLike.classList.toggle("card__button_active")
         this._likeCount.textContent = likes.length;
     }
 
-    setUserId(userId){
+    setUserId(userId) {
         this.userId = userId;
     }
 };

@@ -1,33 +1,33 @@
 export class Api {
     constructor(options) {
-      this.baseUrl = options.baseUrl,
-      this.headers = options.headers
+        this.baseUrl = options.baseUrl,
+            this.headers = options.headers
     }
-  
+
     checkResponse(res) {
         if (res.ok) {
             return res.json();
         }
         return Promise.reject(`Ошибка ${res.status}`);
     };
-    
+
     loadUserData() {
-       return fetch(`${this.baseUrl}/users/me`, {
+        return fetch(`${this.baseUrl}/users/me`, {
             method: 'GET',
             headers: this.headers
         })
-        .then(this.checkResponse)
+            .then(this.checkResponse)
     }
-    
-    
+
+
     loadCards() {
         return fetch(`${this.baseUrl}/cards`, {
             method: 'GET',
             headers: this.headers
         })
-        .then(this.checkResponse)
+            .then(this.checkResponse)
     };
-    
+
     saveEditProfile(nameProfile, infProfile) {
         return fetch(`${this.baseUrl}/users/me`, {
             method: 'PATCH',
@@ -37,9 +37,9 @@ export class Api {
                 about: infProfile
             })
         })
-        .then(this.checkResponse)
+            .then(this.checkResponse)
     };
-    
+
     saveNewCard(nameCard, linkImageCard) {
         return fetch(`${this.baseUrl}/cards`, {
             method: 'POST',
@@ -49,9 +49,9 @@ export class Api {
                 link: linkImageCard
             })
         })
-        .then(this.checkResponse)
+            .then(this.checkResponse)
     }
-    
+
     deleteCard(cardId) {
         return fetch(`${this.baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
@@ -60,9 +60,9 @@ export class Api {
                 id: cardId
             })
         })
-        .then(this.checkResponse)
+            .then(this.checkResponse)
     };
-    
+
     likeCard(cardId) {
         return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
             method: 'PUT',
@@ -71,9 +71,9 @@ export class Api {
                 id: cardId
             })
         })
-        .then(this.checkResponse)
+            .then(this.checkResponse)
     };
-    
+
     deleteLikeCard(cardId) {
         return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
             method: 'DELETE',
@@ -82,9 +82,9 @@ export class Api {
                 id: cardId
             })
         })
-        .then(this.checkResponse)
+            .then(this.checkResponse)
     };
-    
+
     saveEditAvatar(linkAvatar) {
         return fetch(`${this.baseUrl}/users/me/avatar`, {
             method: 'PATCH',
@@ -93,11 +93,11 @@ export class Api {
                 avatar: linkAvatar
             })
         })
-        .then(this.checkResponse)
+            .then(this.checkResponse)
     }
-  }
-  
-  
+}
+
+
 
 
 
