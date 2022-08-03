@@ -13,7 +13,7 @@
     <header class="header page__header">
       <img
         class="header__logo"
-        src="<%=require('../images/logo-1.svg')%>"
+        src="<%=require('./images/logo-1.svg')%>"
         alt="логотип Mesto Russia"
       />
     </header>
@@ -23,7 +23,7 @@
         <div class="profile__avatar">
           <img
             class="profile__image"
-            src="<%=require('../images/Avatar.png')%>"
+            src="<%=require('./images/Avatar.png')%>"
             alt="место для аватара"
           />
           <button
@@ -87,7 +87,7 @@
             <input
               class="form__item"
               type="text"
-              name="description"
+              name="about"
               id="textDescription"
               value="Исследователь океана"
               placeholder="Ваша деятельность"
@@ -120,7 +120,7 @@
           class="modal-window__buttons-exit"
         ></button>
 
-        <form name="plus-card" class="form_plus" novalidate>
+        <form name="plusCard" class="form form_plus" novalidate>
           <h2 class="form__text">Новое место</h2>
 
           <fieldset class="form__contact-info">
@@ -169,7 +169,7 @@
           class="modal-window__buttons-exit"
         ></button>
 
-        <form name="userdata" class="popup__form">
+        <form name="imagesForm" class="form popup__form">
           <img class="popup__image" src="" alt="" />
           <h2 class="popup__text"></h2>
         </form>
@@ -187,7 +187,7 @@
           class="modal-window__buttons-exit"
         ></button>
 
-        <form name="update-avatar" class="form_update-avatar" novalidate>
+        <form name="updateAvatar" class="form form_update-avatar" novalidate>
           <h2 class="form__text">Обновить аватар</h2>
 
           <fieldset class="form__contact-info">
@@ -224,7 +224,7 @@
             class="modal-window__buttons-exit"
           ></button>
   
-          <form name="deletion-confirmation" class="form_deletion-confirmation">
+          <form name="deletionConfirmation" class="form form_deletion-confirmation">
             <h2 class="form__text">Вы уверены?</h2>
             <button
               type="submit"
