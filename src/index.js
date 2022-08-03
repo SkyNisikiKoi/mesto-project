@@ -1,3 +1,6 @@
+const preload = document.querySelector(".preload");
+preload.classList.remove('preload');
+
 import './index/index.css';
 import './components/Сard.js';
 import './utils/constant.js';
@@ -8,43 +11,30 @@ import { PopupWithForm } from './components/РopupWithForm';
 import { PopupWithSubmit } from './components/PopupWithSubmit';
 import { UserInfo } from './components/UserInfo';
 
-const preload = document.querySelector(".preload");
-preload.classList.remove('preload');
-
-export let userId = '';
+let userId = '';
+let sectionCard;
 
 import { imageAvatar } from './utils/constant.js';
 import { buttonImage } from './utils/constant.js';
 import { profileButtonRedaction } from './utils/constant.js';
 import { addCardButton } from './utils/constant.js';
-import { formDeletionConfirmation } from './utils/constant.js';
+import { buttonSave } from './utils/constant.js';
+import { profileForm } from './utils/constant.js';
+import { validationSettings } from './utils/constant.js';
+import { formElementPlus } from './utils/constant.js';
+import { formElementAvatar } from './utils/constant.js';
+import { cardsTemplate } from './utils/constant.js';
 
 
 import { Card } from './components/Сard.js';
 
 import { FormValidator } from './components/FormValidator.js';
 
-const buttonSave = formDeletionConfirmation.querySelector('.form__button-save_deletion-confirmation');
-const profileForm = document.querySelector('.form');
-const validationSettings = {
-    inputSelector: '.form__item',
-    submitButtonSelector: '.form__button-save',
-    inactiveButtonClass: 'form__button-save_inactive',
-    inputErrorClass: 'form__item_type_error',
-    errorClass: 'form__input-error_active'
-}
-
 const profileFormValidator = new FormValidator(validationSettings, profileForm);
-
-const formElementPlus = document.querySelector('.form_plus');
-
 const addCardFormValidator = new FormValidator(validationSettings, formElementPlus);
-
-const formElementAvatar = document.querySelector('.form_update-avatar');
-
 const avatarFormValidator = new FormValidator(validationSettings, formElementAvatar);
 
-export const api = new Api({
+const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/plus-cohort-13',
     headers: {
         authorization: '15612dfc-e819-4f89-bf79-39ea6734df41',
@@ -54,8 +44,6 @@ export const api = new Api({
 
 const popupNew = new PopupWithImage('.popup__view-image');
 popupNew.setEventListeners();
-
-const cardsTemplate = document.querySelector("#card-template").content.querySelector('.card');
 
 const newPopupWithSubmit = new PopupWithSubmit('.popup__deletion-confirmation');
 newPopupWithSubmit.setEventListeners();
@@ -105,9 +93,6 @@ const someHandleDeleteIconClick = (data) => {
 
     newPopupWithSubmit.open();
 };
-
-
-let sectionCard;
 
 const newGetUserInfo = new UserInfo({ infUserName: '.profile__title', infUserDescription: '.profile__subtitle', userAvatarSelector: '.profile__image' }, () => {
     return api.loadUserData()
@@ -162,22 +147,22 @@ const popupUserAvatar = new PopupWithForm('.popup__edit-avatar', (data) => {
 
 popupUserAvatar.setEventListeners();
 
+function createCard(data) {
+    return new Card({
+        data: data,
+        handleCardClick: someHandleCardClick,
+        handleLikeClick: someHandleLikeClick,
+        handleDeleteIconClick: someHandleDeleteIconClick
+    }, cardsTemplate);
+}
+
 const popupAddCard = new PopupWithForm('.popup__add-card', (data) => {
 
     popupAddCard.renderLoading(true);
 
     api.saveNewCard(data.name, data.link)
         .then((result) => {
-            const newCard = new Card({
-                data: result,
-                handleCardClick: () => {
-
-                    popupNew.open(result.link, result.name);
-
-                },
-                handleLikeClick: someHandleLikeClick,
-                handleDeleteIconClick: someHandleDeleteIconClick
-            }, cardsTemplate);
+            const newCard = createCard(result);
 
             newCard.setUserId(userId);
             sectionCard.addItem(newCard.createCard());
@@ -216,7 +201,10 @@ profileButtonRedaction.addEventListener('click', function () {
     newGetUserInfo.getUserInfo()
         .then((userInfo) => {
             popupUserInfo.setInputValues(userInfo)
-        });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 
 }
 );
@@ -240,12 +228,7 @@ Promise.all([api.loadUserData(), api.loadCards()])
         sectionCard = new Section({
             items: [],
             renderer: (data) => {
-                const newCard = new Card({
-                    data: data,
-                    handleCardClick: someHandleCardClick,
-                    handleLikeClick: someHandleLikeClick,
-                    handleDeleteIconClick: someHandleDeleteIconClick
-                }, cardsTemplate);
+                const newCard = createCard(data);
                 newCard.setUserId(userId);
                 sectionCard.addItem(newCard.createCard());
             }
