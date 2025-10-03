@@ -1,5 +1,5 @@
 const config = {
-    baseUrl: 'https://mesto.nomoreparties.co/v1/plus-cohort-13',
+    baseUrl: 'http://localhost:3001',
     headers: {
         authorization: '15612dfc-e819-4f89-bf79-39ea6734df41',
         'Content-Type': 'application/json'
